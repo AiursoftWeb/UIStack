@@ -1,3 +1,11 @@
-# AppStack – Admin & Dashboard Template
+# Aiursoft UI Stack
 
-Thanks for buying. Navigate to `docs/docs-installation.html` to get started.
+## Preview
+
+Click [https://stack.aiursoft.cn/dashboard-default.html](https://stack.aiursoft.cn/dashboard-default.html) here to preview.
+
+## How to use in your project
+
+```bash
+npm i aiur-ui-stack
+```
