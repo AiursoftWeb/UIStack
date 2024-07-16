@@ -1,2 +1,6 @@
 dist/
 node_modules/
+docs/css
+docs/js
+docs/img
+docs/fonts
