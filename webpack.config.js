@@ -59,18 +59,16 @@ module.exports = {
       resourceRegExp: /^\.\/locale$/,
       contextRegExp: /moment$/
     }),
-    // Copy dist folder to docs/dist
-    ...(process.env.NODE_ENV === "production")? [
-      new FileManagerPlugin({
-        events: {
-          onEnd: {
-            copy: [
-              { source: "./dist/", destination: "./docs" }
-            ]
-          }
-        },
-      })
-    ] : [],
+    // Copy ./docs to ./dist
+    new FileManagerPlugin({
+      events: {
+        onEnd: {
+          copy: [
+            { source: "./docs", destination: "./dist" }
+          ]
+        }
+      }
+    }) 
   ],
   module: {
     rules: [
