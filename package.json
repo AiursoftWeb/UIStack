@@ -1,14 +1,12 @@
 {
-  "name": "appstack",
-  "version": "4.0.0",
-  "description": "AppStack - Admin & Dashboard Template",
+  "name": "@aiursoft/uistack",
+  "version": "1.0.2",
+  "description": "Aiursoft Modified UI Stack. Source is not open. But dist is open.",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.js --progress",
     "watch": "webpack --config webpack.config.js --watch --progress",
     "start": "webpack serve --config webpack.config.js --progress"
   },
-  "author": "Bootlab <support@bootlab.io>",
-  "private": true,
   "browserslist": [
     ">= 0.5%",
     "last 2 major versions",
@@ -50,6 +48,7 @@
     "webpack-dev-server": "4.15.2"
   },
   "dependencies": {
+    "@aiursoft/utctime.js": "^1.0.4",
     "@babel/polyfill": "7.12.1",
     "@eonasdan/tempus-dominus": "6.9.7",
     "@fortawesome/fontawesome-free": "6.5.2",
@@ -73,7 +72,8 @@
     "fullcalendar": "5.11.5",
     "jquery": "3.7.1",
     "jquery-mask-plugin": "1.14.16",
-    "jquery-validation": "1.20.0",
+    "jquery-validation": "^1.20.0",
+    "jquery-validation-unobtrusive": "^4.0.0",
     "jsvectormap": "1.5.3",
     "lucide": "0.378.0",
     "moment": "2.30.1",

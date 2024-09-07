@@ -14,7 +14,6 @@ const opts = {
 module.exports = {
   entry: {
     app: "./src/js/app.js",
-    settings: "./src/js/settings/index.js",
     // light: "./src/scss/light.scss",
     // dark: "./src/scss/dark.scss",
   },
@@ -48,27 +47,11 @@ module.exports = {
       $: "jquery",
       jQuery: "jquery"
     }),
-    // Copy fonts and images to dist
-    new CopyWebpackPlugin({
-      patterns: [
-        { from: "src/img", to: "img" }
-      ]
-    }),
     // Ignore momentjs locales
     new Webpack.IgnorePlugin({
       resourceRegExp: /^\.\/locale$/,
       contextRegExp: /moment$/
     }),
-    // Copy ./docs to ./dist
-    new FileManagerPlugin({
-      events: {
-        onEnd: {
-          copy: [
-            { source: "./docs", destination: "./dist" }
-          ]
-        }
-      }
-    }) 
   ],
   module: {
     rules: [

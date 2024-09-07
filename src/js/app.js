@@ -32,3 +32,7 @@ import "./modules/vector-maps";
 
 // Tables (optional)
 import "./modules/datatables"; // requires jQuery
+
+// Time
+import UtcTime from '@aiursoft/utctime.js'
+new UtcTime({})
