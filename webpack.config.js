@@ -4,7 +4,6 @@ const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
-const FileManagerPlugin = require("filemanager-webpack-plugin");
 
 const opts = {
   rootDir: process.cwd(),
@@ -14,8 +13,6 @@ const opts = {
 module.exports = {
   entry: {
     app: "./src/js/app.js",
-    // light: "./src/scss/light.scss",
-    // dark: "./src/scss/dark.scss",
   },
   mode: process.env.NODE_ENV === "production" ? "production" : "development",
   devtool: process.env.NODE_ENV === "production" ? false : "inline-source-map",
@@ -46,6 +43,12 @@ module.exports = {
     new Webpack.ProvidePlugin({
       $: "jquery",
       jQuery: "jquery"
+    }),
+    // Copy images to dist
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: "src/img", to: "img" }
+      ]
     }),
     // Ignore momentjs locales
     new Webpack.IgnorePlugin({
@@ -108,12 +111,5 @@ module.exports = {
     alias: {
       request$: "xhr"
     }
-  },
-  devServer: {
-    static: {
-      directory: Path.join(__dirname, "docs"),
-    },
-    port: 8080,
-    open: true
   }
 };

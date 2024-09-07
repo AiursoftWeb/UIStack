@@ -3,21 +3,8 @@
   "version": "1.0.2",
   "description": "Aiursoft Modified UI Stack. Source is not open. But dist is open.",
   "scripts": {
-    "build": "cross-env NODE_ENV=production webpack --config webpack.config.js --progress",
-    "watch": "webpack --config webpack.config.js --watch --progress",
-    "start": "webpack serve --config webpack.config.js --progress"
+    "build": "cross-env NODE_ENV=production webpack --config webpack.config.js --progress"
   },
-  "browserslist": [
-    ">= 0.5%",
-    "last 2 major versions",
-    "not dead",
-    "Chrome >= 60",
-    "Firefox >= 60",
-    "Firefox ESR",
-    "iOS >= 12",
-    "Safari >= 12",
-    "not Explorer <= 11"
-  ],
   "devDependencies": {
     "@babel/core": "7.24.5",
     "@babel/plugin-syntax-dynamic-import": "7.8.3",
@@ -44,8 +31,7 @@
     "terser-webpack-plugin": "5.3.10",
     "url-loader": "4.1.1",
     "webpack": "5.91.0",
-    "webpack-cli": "5.1.4",
-    "webpack-dev-server": "4.15.2"
+    "webpack-cli": "5.1.4"
   },
   "dependencies": {
     "@aiursoft/utctime.js": "^1.0.4",
