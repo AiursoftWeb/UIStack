@@ -3,7 +3,7 @@
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://gitlab.aiursoft.cn/aiursoft/uistack/-/blob/master/LICENSE)
 [![Pipeline stat](https://gitlab.aiursoft.cn/aiursoft/uistack/badges/master/pipeline.svg)](https://gitlab.aiursoft.cn/aiursoft/uistack/-/pipelines)
 [![Test Coverage](https://gitlab.aiursoft.cn/aiursoft/uistack/badges/master/coverage.svg)](https://gitlab.aiursoft.cn/aiursoft/uistack/-/pipelines)
-[![ManHours](https://manhours.aiursoft.cn/r/gitlab.aiursoft.cn/aiursoft/uistack.svg)](https://gitlab.aiursoft.cn/aiursoft/tracer/-/commits/master?ref_type=heads)
+[![ManHours](https://manhours.aiursoft.cn/r/gitlab.aiursoft.cn/aiursoft/uistack.svg)](https://gitlab.aiursoft.cn/aiursoft/uistack/-/commits/master?ref_type=heads)
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fstack.aiursoft.cn%2F)](https://stack.aiursoft.cn)
 [![Docker](https://img.shields.io/badge/docker-latest-blue?logo=docker)](https://hub.aiursoft.cn/#!/taglist/aiursoft/uistack)
 
