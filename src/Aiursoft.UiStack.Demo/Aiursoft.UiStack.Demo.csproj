@@ -10,9 +10,6 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Aiursoft.Scanner" Version="8.0.1" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Aiursoft.UiStack\Aiursoft.UiStack.csproj" />
   </ItemGroup>
 </Project>

@@ -1,5 +1,4 @@
-﻿using Aiursoft.Scanner;
-using Aiursoft.WebTools.Abstractions.Models;
+﻿using Aiursoft.WebTools.Abstractions.Models;
 
 namespace Aiursoft.UiStack.Demo;
 
@@ -11,7 +10,6 @@ public class Startup : IWebStartup
             .AddControllersWithViews()
             .AddApplicationPart(typeof(Startup).Assembly)
             .AddAiursoftUiStack();
-        services.AddLibraryDependencies();
     }
 
     public void Configure(WebApplication app)
