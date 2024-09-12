@@ -2,7 +2,7 @@ aiur() { arg="$( cut -d ' ' -f 2- <<< "$@" )" && curl -sL https://gitlab.aiursof
 
 app_name="uistack"
 repo_path="https://gitlab.aiursoft.cn/aiursoft/uistack"
-proj_path="src/Aiursoft.UiStack/Aiursoft.UiStack.csproj"
+proj_path="src/Aiursoft.UiStack.Demo/Aiursoft.UiStack.Demo.csproj"
 
 get_dll_name()
 {

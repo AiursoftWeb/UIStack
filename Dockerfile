@@ -1,5 +1,5 @@
-ARG CSPROJ_PATH="./src/Aiursoft.UiStack/"
-ARG PROJ_NAME="Aiursoft.Tracer"
+ARG CSPROJ_PATH="./src/Aiursoft.UiStack.Demo/"
+ARG PROJ_NAME="Aiursoft.UiStack.Demo"
 
 # ============================
 # Prepare NPM Environment
