@@ -28,7 +28,7 @@ public class SidebarProvider
                         {
                             UniqueId = "dashboards",
                             Text = "Dashboards",
-                            IsActive = false,
+                            IsActive = true,
                             LucideIcon = "sliders",
                             Decoration = new Decoration
                             {
@@ -37,8 +37,13 @@ public class SidebarProvider
                             },
                             Links =
                             [
-                                new CascadedLink { Href = "#", Text = "Default" },
-                                new CascadedLink { Href = "#", Text = "Analytics" },
+                                new CascadedLink
+                                {
+                                    Href = "/", 
+                                    Text = "Default",
+                                    IsActive = true
+                                },
+                                new CascadedLink { Href = "/home/analytics", Text = "Analytics" },
                                 new CascadedLink { Href = "#", Text = "SaaS" },
                                 new CascadedLink { Href = "#", Text = "Social" },
                                 new CascadedLink { Href = "#", Text = "Crypto" }
@@ -55,14 +60,13 @@ public class SidebarProvider
                         {
                             UniqueId = "ecommerce",
                             Text = "E-Commerce",
-                            IsActive = true,
+                            IsActive = false,
                             LucideIcon = "shopping-bag",
                             Links =
                             [
                                 new CascadedLink
                                 {
                                     Href = "#",
-                                    IsActive = true,
                                     Text = "Products",
                                     Decoration = new Decoration
                                     {

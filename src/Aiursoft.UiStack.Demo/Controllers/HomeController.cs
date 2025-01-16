@@ -15,4 +15,14 @@ public class HomeController(LayoutSettingsConfigure layout) : Controller
         layout.ConfigureLayout(model);
         return this.UiStackView(model);
     }
+
+    public IActionResult Analytics()
+    {
+        var model = new IndexViewModel
+        {
+            PageTitle = "Analytics"
+        };
+        layout.ConfigureLayout(model);
+        return this.UiStackView(model);
+    }
 }
