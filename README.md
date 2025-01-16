@@ -5,6 +5,7 @@
 [![Test Coverage](https://gitlab.aiursoft.cn/aiursoft/uistack/badges/master/coverage.svg)](https://gitlab.aiursoft.cn/aiursoft/uistack/-/pipelines)
 [![ManHours](https://manhours.aiursoft.cn/r/gitlab.aiursoft.cn/aiursoft/uistack.svg)](https://gitlab.aiursoft.cn/aiursoft/uistack/-/commits/master?ref_type=heads)
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fstack.aiursoft.cn%2F)](https://stack.aiursoft.cn)
+[![NuGet version](https://img.shields.io/nuget/v/Aiursoft.UiStack.svg)](https://www.nuget.org/packages/Aiursoft.UiStack/)
 [![Docker](https://img.shields.io/badge/docker-latest-blue?logo=docker)](https://hub.aiursoft.cn/#!/taglist/aiursoft/uistack)
 
 Aiursoft UiStack is a front-end framework for Aiursoft projects based on ASP.NET Core. It provides a set of common components and styles for Aiursoft projects. It is designed to be simple and easy to use, and can be used to quickly build a front-end for Aiursoft projects.
