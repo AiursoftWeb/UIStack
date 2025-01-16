@@ -12,7 +12,7 @@ public class HomeController(LayoutSettingsConfigure layout) : Controller
         {
             PageTitle = "Index"
         };
-        layout.ConfigureLayout(model, HttpContext);
+        layout.ConfigureLayout(model);
         return this.UiStackView(model);
     }
 }

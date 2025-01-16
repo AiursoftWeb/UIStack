@@ -1,6 +1,5 @@
 using Aiursoft.UiStack.Layout;
 using Aiursoft.UiStack.Views.Shared.Components.Navbar;
-using Microsoft.AspNetCore.Http.Extensions;
 
 namespace Aiursoft.UiStack.Demo.Services;
 
@@ -14,7 +13,7 @@ public class LayoutSettingsConfigure(
     UserDropdownProvider userDropdownProvider,
     SidebarProvider sidebarProvider)
 {
-    public void ConfigureLayout(UiStackLayoutViewModel input, HttpContext context)
+    public void ConfigureLayout(UiStackLayoutViewModel input)
     {
         if (string.IsNullOrWhiteSpace(input.PageTitle))
         {
@@ -26,22 +25,6 @@ public class LayoutSettingsConfigure(
             input.AppName = "The demo project of UiStack";
         }
 
-        if (string.IsNullOrWhiteSpace(input.Description))
-        {
-            input.Description = "This is a demo project of UiStack. It shows how to use UiStack to build a website.";
-        }
-
-        // if (string.IsNullOrWhiteSpace(input.CanonicalUrl))
-        // {
-        //     var displayUrl = context.Request.GetDisplayUrl();
-        //     var index = displayUrl.IndexOf('?');
-        //     if (index != -1)
-        //     {
-        //         displayUrl = displayUrl.Substring(0, index);
-        //     }
-        //     input.CanonicalUrl = displayUrl;
-        // }
-        
         input.Theme = UiTheme.Dark;
         input.SidebarTheme = UiSidebarTheme.Dark;
         input.Layout = UiLayout.Fluid;

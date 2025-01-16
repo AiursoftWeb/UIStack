@@ -40,8 +40,6 @@ public class UiStackLayoutViewModel
 {
     public required string PageTitle { get; set; }
     public string? AppName { get; set; }
-    public string? Description { get; set; }
-    public string? CanonicalUrl { get; set; }
     
     public UiTheme Theme { get; set; } = UiTheme.Dark;
     public UiLayout Layout { get; set; } = UiLayout.Fluid;
