@@ -14,17 +14,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    @if (!string.IsNullOrWhiteSpace(Model.Description))
-    {
-        <meta name="description" content="@Model.Description">
-    }
     <title>@Model.PageTitle | @Model.AppName</title>
-    @if (!string.IsNullOrWhiteSpace(Model.CanonicalUrl))
-    {
-        <link rel="canonical" href="@Model.CanonicalUrl">
-    }
     <link rel="shortcut icon" href="~/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="~/node_modules/@@aiursoft/uistack/dist/css/app.css" rel="stylesheet">
     @(await RenderSectionAsync("styles", required: false))
 </head>

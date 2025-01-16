@@ -38,20 +38,18 @@ public enum UiSidebarBehavior
 
 public class UiStackLayoutViewModel
 {
-    public required string PageTitle { get; init; }
-    public required string AppName { get; init; }
-    public string? Description { get; init; }
-    public string? CanonicalUrl { get; init; }
+    public required string PageTitle { get; set; }
+    public string? AppName { get; set; }
     
-    public UiTheme Theme { get; init; } = UiTheme.Dark;
-    public UiLayout Layout { get; init; } = UiLayout.Fluid;
-    public UiSidebarTheme SidebarTheme { get; init; } = UiSidebarTheme.Dark;
-    public UiSidebarPosition SidebarPosition { get; init; } = UiSidebarPosition.Left;
-    public UiSidebarBehavior SidebarBehavior { get; init; } = UiSidebarBehavior.Sticky;
+    public UiTheme Theme { get; set; } = UiTheme.Dark;
+    public UiLayout Layout { get; set; } = UiLayout.Fluid;
+    public UiSidebarTheme SidebarTheme { get; set; } = UiSidebarTheme.Dark;
+    public UiSidebarPosition SidebarPosition { get; set; } = UiSidebarPosition.Left;
+    public UiSidebarBehavior SidebarBehavior { get; set; } = UiSidebarBehavior.Sticky;
 
-    public FooterMenuViewModel? FooterMenu { get; init; }
+    public FooterMenuViewModel? FooterMenu { get; set; }
     
-    public SidebarViewModel? Sidebar { get; init; }
+    public SidebarViewModel? Sidebar { get; set; }
     
-    public NavbarViewModel? Navbar { get; init; }
+    public NavbarViewModel? Navbar { get; set; }
 }
