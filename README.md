@@ -6,7 +6,7 @@
 [![ManHours](https://manhours.aiursoft.cn/r/gitlab.aiursoft.cn/aiursoft/uistack.svg)](https://gitlab.aiursoft.cn/aiursoft/uistack/-/commits/master?ref_type=heads)
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fstack.aiursoft.cn%2F)](https://stack.aiursoft.cn)
 [![NuGet version](https://img.shields.io/nuget/v/Aiursoft.UiStack.svg)](https://www.nuget.org/packages/Aiursoft.UiStack/)
-[![Docker](https://img.shields.io/badge/docker-latest-blue?logo=docker)](https://hub.aiursoft.cn/#!/taglist/aiursoft/uistack)
+[![Docker](https://img.shields.io/docker/pulls/aiursoft/uistack.svg)](https://hub.docker.com/r/aiursoft/uistack)
 
 Aiursoft UiStack is a front-end framework for Aiursoft projects based on ASP.NET Core. It provides a set of common components and styles for Aiursoft projects. It is designed to be simple and easy to use, and can be used to quickly build a front-end for Aiursoft projects.
 
@@ -53,7 +53,7 @@ First, install Docker [here](https://docs.docker.com/get-docker/).
 Then run the following commands in a Linux shell:
 
 ```bash
-image=hub.aiursoft.cn/aiursoft/uistack
+image=aiursoft/uistack
 appName=uistack
 docker pull $image
 docker run -d --name $appName --restart unless-stopped -p 5000:5000 -v /var/www/$appName:/data $image
@@ -65,7 +65,7 @@ The docker image has the following context:
 
 | Properties  | Value                           |
 |-------------|---------------------------------|
-| Image       | hub.aiursoft.cn/aiursoft/uistack |
+| Image       | aiursoft/uistack |
 | Ports       | 5000                            |
 | Binary path | /app                            |
 | Data path   | /data                           |
