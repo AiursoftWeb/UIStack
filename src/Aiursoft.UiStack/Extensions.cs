@@ -1,6 +1,5 @@
 using Aiursoft.UiStack.Layout;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Aiursoft.UiStack;
 

@@ -1,6 +1,5 @@
 ﻿using Aiursoft.CSTools.Tools;
 using Microsoft.Extensions.Hosting;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using static Aiursoft.WebTools.Extends;
 
 namespace Aiursoft.UiStack.Demo.Tests;

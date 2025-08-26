@@ -1,4 +1,5 @@
 ﻿using Aiursoft.UiStack.Demo.Services;
+using Aiursoft.UiStack.Layout;
 using Aiursoft.WebTools.Abstractions.Models;
 
 namespace Aiursoft.UiStack.Demo;
@@ -10,7 +11,8 @@ public class Startup : IWebStartup
     {
         services
             .AddControllersWithViews()
-            .AddApplicationPart(typeof(Startup).Assembly);
+            .AddApplicationPart(typeof(Startup).Assembly)
+            .AddApplicationPart(typeof(UiStackLayoutViewModel).Assembly);
 
         services.AddScoped<LayoutSettingsConfigure>();
         services.AddScoped<FooterMenuProvider>();
