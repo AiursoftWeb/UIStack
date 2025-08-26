@@ -38,9 +38,9 @@ public enum UiSidebarBehavior
 
 public class UiStackLayoutViewModel
 {
-    public required string PageTitle { get; set; }
+    public string? PageTitle { get; set; }
     public string? AppName { get; set; }
-    
+
     public UiTheme Theme { get; set; } = UiTheme.Dark;
     public UiLayout Layout { get; set; } = UiLayout.Fluid;
     public UiSidebarTheme SidebarTheme { get; set; } = UiSidebarTheme.Dark;
@@ -48,8 +48,8 @@ public class UiStackLayoutViewModel
     public UiSidebarBehavior SidebarBehavior { get; set; } = UiSidebarBehavior.Sticky;
 
     public FooterMenuViewModel? FooterMenu { get; set; }
-    
+
     public SidebarViewModel? Sidebar { get; set; }
-    
+
     public NavbarViewModel? Navbar { get; set; }
 }
