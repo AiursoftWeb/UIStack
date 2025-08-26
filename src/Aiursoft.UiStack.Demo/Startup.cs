@@ -10,8 +10,7 @@ public class Startup : IWebStartup
     {
         services
             .AddControllersWithViews()
-            .AddApplicationPart(typeof(Startup).Assembly)
-            .AddAiursoftUiStack();
+            .AddApplicationPart(typeof(Startup).Assembly);
 
         services.AddScoped<LayoutSettingsConfigure>();
         services.AddScoped<FooterMenuProvider>();

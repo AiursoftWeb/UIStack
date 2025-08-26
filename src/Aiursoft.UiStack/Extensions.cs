@@ -10,15 +10,9 @@ public static class Extensions
     {
         return controller.View(model: model);
     }
-    
+
     public static ViewResult UiStackView(this Controller controller, UiStackLayoutViewModel model, string viewName)
     {
         return controller.View(viewName, model);
-    }
-    
-    public static IMvcBuilder AddAiursoftUiStack(this IMvcBuilder builder)
-    {
-        builder.AddApplicationPart(typeof(UiStackLayoutViewModel).Assembly);
-        return builder;
     }
 }
