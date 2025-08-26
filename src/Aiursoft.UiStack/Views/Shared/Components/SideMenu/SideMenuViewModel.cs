@@ -2,14 +2,14 @@ namespace Aiursoft.UiStack.Views.Shared.Components.SideMenu;
 
 public class SideMenuViewModel
 {
-    public required NavGroup[] Groups { get; init; } = [];
+    public required NavGroup[] Groups { get; set; } = [];
 }
 
 public class NavGroup
 {
-    public required string Name { get; init; }
-    
-    public required SideBarItem[] Items { get; init; } = [];
+    public required string Name { get; set; }
+
+    public required SideBarItem[] Items { get; set; } = [];
 }
 
 public abstract class SideBarItem
@@ -20,42 +20,42 @@ public abstract class SideBarItem
     /// Sample: "air-vent"
     /// </summary>
     public required string LucideIcon { get; set; }
-    
+
     public required string Text { get; set; }
-    
+
     public Decoration? Decoration { get; set; }
-    
+
     public bool IsActive { get; set; }
 }
 
 
 public class CascadedSideBarItem : SideBarItem
 {
-    public required string UniqueId { get; init; }
-    
-    public CascadedLink[] Links { get; init; } = [];
+    public required string UniqueId { get; set; }
+
+    public CascadedLink[] Links { get; set; } = [];
 }
 
 public class CascadedLink
 {
-    public required string Text { get; init; }
-    
-    public required string Href { get; init; }
-    
+    public required string Text { get; set; }
+
+    public required string Href { get; set; }
+
     public Decoration? Decoration { get; set; }
-    
+
     public bool IsActive { get; set; }
 }
 
 
 public class LinkSideBarItem : SideBarItem
 {
-    public required string Href { get; init; }
+    public required string Href { get; set; }
 }
 
 public class Decoration
 {
-    public required string Text { get; init; }
+    public required string Text { get; set; }
 
-    public required string ColorClass { get; init; } // Can be: primary, warning, danger, success, info, secondary, dark, light
+    public required string ColorClass { get; set; } // Can be: primary, warning, danger, success, info, secondary, dark, light
 }

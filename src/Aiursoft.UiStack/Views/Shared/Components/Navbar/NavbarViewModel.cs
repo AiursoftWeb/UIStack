@@ -9,14 +9,14 @@ namespace Aiursoft.UiStack.Views.Shared.Components.Navbar;
 
 public class NavbarViewModel
 {
-    public SearchFormViewModel? SearchForm { get; init; }
-    public MegaMenuViewModel? MegaMenu { get; init; }
+    public SearchFormViewModel? SearchForm { get; set; }
+    public MegaMenuViewModel? MegaMenu { get; set; }
 
-    public MessagesDropdownViewModel? MessagesDropdown { get; init; }
-    
-    public NotificationsDropdownViewModel? NotificationsDropdown { get; init; }
-    
-    public LanguagesDropdownViewModel? LanguagesDropdown { get; init; }
-    
-    public UserDropdownViewModel? UserDropdown { get; init; }
+    public MessagesDropdownViewModel? MessagesDropdown { get; set; }
+
+    public NotificationsDropdownViewModel? NotificationsDropdown { get; set; }
+
+    public LanguagesDropdownViewModel? LanguagesDropdown { get; set; }
+
+    public UserDropdownViewModel? UserDropdown { get; set; }
 }

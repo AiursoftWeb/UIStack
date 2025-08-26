@@ -4,17 +4,17 @@ namespace Aiursoft.UiStack.Views.Shared.Components.NotificationsDropdown;
 
 public class NotificationsDropdownViewModel
 {
-    public IReadOnlyCollection<Notification> Notifications { get; init; } = [];
-    
-    public required Link ViewAllLink { get; init; }
+    public IReadOnlyCollection<Notification> Notifications { get; set; } = [];
+
+    public required Link ViewAllLink { get; set; }
 }
 
 public class Notification
 {
-    public required string Title { get; init; }
-    public required string Message { get; init; }
-    public required DateTime TriggerTime { get; init; }
+    public required string Title { get; set; }
+    public required string Message { get; set; }
+    public required DateTime TriggerTime { get; set; }
 
-    public required string Icon { get; init; } = "bell";
-    public required string IconClass { get; init; } = "text-warning";
+    public required string Icon { get; set; } = "bell";
+    public required string IconClass { get; set; } = "text-warning";
 }

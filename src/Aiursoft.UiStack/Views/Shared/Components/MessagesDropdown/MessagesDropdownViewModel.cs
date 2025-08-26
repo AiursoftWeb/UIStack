@@ -4,20 +4,20 @@ namespace Aiursoft.UiStack.Views.Shared.Components.MessagesDropdown;
 
 public class MessagesDropdownViewModel
 {
-    public Message[] Messages { get; init; } = [];
-    
-    public required Link ViewAllLink { get; init; }
+    public Message[] Messages { get; set; } = [];
+
+    public required Link ViewAllLink { get; set; }
 }
 
 public class Message
 {
-    public required string SenderAvatarUrl { get; init; }
-    
-    public required string SenderName { get; init; }
-    
-    public required string LatestMessagePreview { get; init; }
-    
-    public required string ClickableLink { get; init; }
-    
-    public required DateTime LatestMessageTime { get; init; }
+    public required string SenderAvatarUrl { get; set; }
+
+    public required string SenderName { get; set; }
+
+    public required string LatestMessagePreview { get; set; }
+
+    public required string ClickableLink { get; set; }
+
+    public required DateTime LatestMessageTime { get; set; }
 }
