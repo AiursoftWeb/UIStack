@@ -2,14 +2,14 @@ namespace Aiursoft.UiStack.Views.Shared.Components.SideMenu;
 
 public class SideMenuViewModel
 {
-    public required NavGroup[] Groups { get; set; } = [];
+    public required List<NavGroup> Groups { get; set; } = [];
 }
 
 public class NavGroup
 {
     public required string Name { get; set; }
 
-    public required SideBarItem[] Items { get; set; } = [];
+    public required List<SideBarItem> Items { get; set; } = [];
 }
 
 public abstract class SideBarItem
@@ -33,7 +33,7 @@ public class CascadedSideBarItem : SideBarItem
 {
     public required string UniqueId { get; set; }
 
-    public CascadedLink[] Links { get; set; } = [];
+    public List<CascadedLink> Links { get; set; } = [];
 }
 
 public class CascadedLink
