@@ -4,10 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Aiursoft.UiStack.Navigation;
 
-// ReSharper disable NotAccessedPositionalProperty.Global
-// ReSharper restore NotAccessedPositionalProperty.Global
-
-public class NavigationState
+public class NavigationState<T>
 {
     public readonly IReadOnlyList<NavGroupDefinition> NavMap;
 
@@ -15,7 +12,7 @@ public class NavigationState
     {
         var navGroups = new Dictionary<string, NavGroupDefinition>();
 
-        var controllers = Assembly.GetExecutingAssembly().GetTypes()
+        var controllers = typeof(T).Assembly.GetTypes()
             .Where(type => typeof(Controller).IsAssignableFrom(type));
 
         foreach (var controller in controllers)
