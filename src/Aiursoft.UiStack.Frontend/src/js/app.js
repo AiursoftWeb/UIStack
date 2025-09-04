@@ -35,4 +35,11 @@ import "./modules/datatables"; // requires jQuery
 
 // Time
 import UtcTime from '@aiursoft/utctime.js'
-new UtcTime({})
+new UtcTime({
+  onSet: function (element, date) {
+    element.setAttribute('data-toggle', 'tooltip')
+    element.setAttribute('data-trigger', 'hover')
+    element.setAttribute('data-title', date.toLocaleString())
+    $(element).tooltip()
+  },
+})
