@@ -8,7 +8,10 @@
         @foreach (var lang in Model.Languages)
         {
             <a class="dropdown-item" href="@lang.Link">
-                <img src="@lang.FlagUrl" alt="@lang.Name" width="20" class="align-middle me-1"/>
+                @if (!string.IsNullOrEmpty(lang.FlagUrl))
+                {
+                    <img src="@lang.FlagUrl" alt="@lang.Name" width="20" class="align-middle me-1"/>
+                }
                 <span class="align-middle">@lang.Name</span>
             </a>
         }

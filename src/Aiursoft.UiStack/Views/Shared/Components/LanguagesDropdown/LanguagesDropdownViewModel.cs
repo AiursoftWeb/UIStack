@@ -8,7 +8,7 @@ public class LanguagesDropdownViewModel
 
 public class LanguageSelection
 {
-    public required string FlagUrl { get; set; }
+    public string? FlagUrl { get; set; }
 
     public required string Link { get; set; }
 
