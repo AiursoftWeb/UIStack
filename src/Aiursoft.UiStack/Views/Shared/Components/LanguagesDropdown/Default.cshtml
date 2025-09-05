@@ -2,7 +2,16 @@
 
 <li class="nav-item dropdown">
     <a class="nav-flag dropdown-toggle" href="#" id="languageDropdown" data-bs-toggle="dropdown">
-        <img src="@Model.SelectedLanguage.FlagUrl" alt="@Model.SelectedLanguage.Name"/>
+        @if (string.IsNullOrEmpty(Model.SelectedLanguage.FlagUrl))
+        {
+            <div class="position-relative">
+                <i class="align-middle text-body" data-lucide="globe"></i>
+            </div>
+        }
+        else
+        {
+            <img src="@Model.SelectedLanguage.FlagUrl" alt="@Model.SelectedLanguage.Name"/>
+        }
     </a>
     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
         @foreach (var lang in Model.Languages)
