@@ -11,7 +11,7 @@
     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0" aria-labelledby="messagesDropdown">
         <div class="dropdown-menu-header">
             <div class="position-relative">
-                @Model.Messages.Length New Messages
+                @Model.Messages.Length @Localizer["New Messages"]
             </div>
         </div>
         <div class="list-group">
@@ -24,7 +24,7 @@
                         </div>
                         <div class="col-10 ps-2">
                             <div>@message.SenderName</div>
-                            <div class="text-muted small mt-1">@message.LatestMessagePreview</div>
+                            <div class="text-muted small mt-1">@Localizer[message.LatestMessagePreview]</div>
                             <div class="text-muted small mt-1" data-utc-time="@message.LatestMessageTime.ToHtmlDateTime()"></div>
                         </div>
                     </div>
@@ -32,7 +32,7 @@
             }
         </div>
         <div class="dropdown-menu-footer">
-            <a href="@Model.ViewAllLink.Href" class="text-muted">@Model.ViewAllLink.Text</a>
+            <a href="@Model.ViewAllLink.Href" class="text-muted">@Localizer[Model.ViewAllLink.Text]</a>
         </div>
     </div>
 </li>

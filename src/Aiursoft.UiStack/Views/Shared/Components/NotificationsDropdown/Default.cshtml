@@ -1,4 +1,4 @@
-@model Aiursoft.UiStack.Views.Shared.Components.NotificationsDropdown.NotificationsDropdownViewModel       
+@model Aiursoft.UiStack.Views.Shared.Components.NotificationsDropdown.NotificationsDropdownViewModel
 <li class="nav-item dropdown">
     <a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown" data-bs-toggle="dropdown">
         <div class="position-relative">
@@ -8,20 +8,20 @@
     </a>
     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0" aria-labelledby="alertsDropdown">
         <div class="dropdown-menu-header">
-            @Model.Notifications.Count New Notifications
+            @Model.Notifications.Count @Localizer["New Notifications"]
         </div>
         <div class="list-group">
             @foreach (var notification in Model.Notifications)
             {
                 <a href="#" class="list-group-item">
-                    
+
                     <div class="row g-0 align-items-center">
                         <div class="col-2">
                             <i class="@notification.IconClass" data-lucide="@notification.Icon"></i>
                         </div>
                         <div class="col-10">
-                            <div>@notification.Title</div>
-                            <div class="text-muted small mt-1">@notification.Message</div>
+                            <div>@Localizer[notification.Title]</div>
+                            <div class="text-muted small mt-1">@Localizer[notification.Message]</div>
                             <div class="text-muted small mt-1" data-utc-time="@notification.TriggerTime"></div>
                         </div>
                     </div>
@@ -29,7 +29,7 @@
             }
         </div>
         <div class="dropdown-menu-footer">
-            <a href="@Model.ViewAllLink.Href" class="text-muted">@Model.ViewAllLink.Text</a>
+            <a href="@Model.ViewAllLink.Href" class="text-muted">@Localizer[Model.ViewAllLink.Text]</a>
         </div>
     </div>
 </li>

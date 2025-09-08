@@ -15,9 +15,9 @@
             var iconLinkGroup = Model.IconLinkGroups[i];
             foreach (var link in iconLinkGroup.Links)
             {
-                <a class="dropdown-item" href="@link.Href"><i class="align-middle me-1" data-lucide="@link.Icon"></i> @link.Text</a>
+                <a class="dropdown-item" href="@link.Href"><i class="align-middle me-1" data-lucide="@link.Icon"></i>@Localizer[link.Text]</a>
             }
-            
+
             if (i != Model.IconLinkGroups.Length - 1)
             {
                 <div class="dropdown-divider"></div>
