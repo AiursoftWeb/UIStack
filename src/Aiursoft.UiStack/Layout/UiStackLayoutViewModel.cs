@@ -18,6 +18,7 @@ public enum UiLayout
 
 public enum UiSidebarTheme
 {
+    Default,
     Dark,
     Colored,
     Light
