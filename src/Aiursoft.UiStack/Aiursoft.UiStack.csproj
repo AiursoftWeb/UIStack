@@ -30,6 +30,6 @@
     <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Aiursoft.WebTools" Version="9.0.8" />
+    <PackageReference Include="Aiursoft.WebTools" Version="9.0.9" />
   </ItemGroup>
 </Project>
