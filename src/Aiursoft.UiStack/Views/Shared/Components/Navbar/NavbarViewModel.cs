@@ -19,4 +19,6 @@ public class NavbarViewModel
     public LanguagesDropdownViewModel? LanguagesDropdown { get; set; }
 
     public UserDropdownViewModel? UserDropdown { get; set; }
+
+    public string? ThemeSwitchApiCallEndpoint { get; set; }
 }

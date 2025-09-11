@@ -21,13 +21,13 @@
 
 <div class="navbar-collapse collapse">
     <ul class="navbar-nav navbar-align">
-        
+
         @* Messages dropdown *@
         @if (Model.MessagesDropdown != null)
         {
             <vc:messages-dropdown model="@Model.MessagesDropdown"></vc:messages-dropdown>
         }
-        
+
         @* Notification dropdown *@
         @if (Model.NotificationsDropdown != null)
         {
@@ -36,7 +36,7 @@
 
         @* Theme toggle *@
         <li class="nav-item nav-theme-toggle dropdown">
-            <a class="nav-icon js-theme-toggle" href="#">
+            <a class="nav-icon js-theme-toggle" href="#" data-when-changed-post="@Model.ThemeSwitchApiCallEndpoint">
                 <div class="position-relative">
                     <i class="align-middle text-body nav-theme-toggle-light" data-lucide="sun"></i>
                     <i class="align-middle text-body nav-theme-toggle-dark" data-lucide="moon"></i>
