@@ -1,6 +1,7 @@
 ﻿using Aiursoft.UiStack.Demo.Services;
 using Aiursoft.UiStack.Layout;
 using Aiursoft.WebTools.Abstractions.Models;
+using Microsoft.AspNetCore.Mvc.Razor;
 
 namespace Aiursoft.UiStack.Demo;
 
@@ -12,7 +13,9 @@ public class Startup : IWebStartup
         services
             .AddControllersWithViews()
             .AddApplicationPart(typeof(Startup).Assembly)
-            .AddApplicationPart(typeof(UiStackLayoutViewModel).Assembly);
+            .AddApplicationPart(typeof(UiStackLayoutViewModel).Assembly)
+            .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+            .AddDataAnnotationsLocalization();
 
         services.AddScoped<LayoutSettingsConfigure>();
         services.AddScoped<FooterMenuProvider>();
