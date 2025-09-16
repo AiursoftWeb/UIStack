@@ -6,7 +6,11 @@
     </a>
 
     <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-        <img src="@Model.UserAvatarUrl" class="img-fluid rounded-circle me-1 mt-n2 mb-n2" alt="@Model.UserName" style="width: 40px; height: 40px;" /> <span>@Model.UserName</span>
+        @if (!string.IsNullOrWhiteSpace(Model.UserAvatarUrl))
+        {
+            <img src="@Model.UserAvatarUrl" class="img-fluid rounded-circle me-1 mt-n2 mb-n2" alt="@Model.UserName" style="width: 40px; height: 40px;"/>
+        }
+        <span>@Model.UserName</span>
     </a>
 
     <div class="dropdown-menu dropdown-menu-end">
