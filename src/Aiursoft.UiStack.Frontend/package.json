@@ -34,7 +34,7 @@
     "webpack-cli": "5.1.4"
   },
   "dependencies": {
-    "@aiursoft/utctime.js": "^1.0.4",
+    "@aiursoft/utctime.js": "^1.0.6",
     "@babel/polyfill": "7.12.1",
     "@eonasdan/tempus-dominus": "6.9.7",
     "@fortawesome/fontawesome-free": "6.5.2",
