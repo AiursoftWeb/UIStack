@@ -36,6 +36,8 @@ import "./modules/datatables"; // requires jQuery
 // Time
 import UtcTime from '@aiursoft/utctime.js'
 new UtcTime({
+  disableAutoUpdate: true,
+  disableAgo: true,
   onSet: function (element, date) {
     new bootstrap.Tooltip(element, {
       trigger: 'hover',
