@@ -41,7 +41,12 @@ public class NavigationState<T>
                 var item = group.Items.FirstOrDefault(i => i.Text == navAttr.CascadedLinksGroupName);
                 if (item == null)
                 {
-                    item = new NavItemDefinition(navAttr.CascadedLinksGroupName.ToLower(), navAttr.CascadedLinksGroupName, navAttr.CascadedLinksIcon, navAttr.CascadedLinksOrder, new List<NavLinkDefinition>());
+                    item = new NavItemDefinition(
+                        navAttr.CascadedLinksGroupName.ToLower().Replace(" ", "-"),
+                        navAttr.CascadedLinksGroupName,
+                        navAttr.CascadedLinksIcon,
+                        navAttr.CascadedLinksOrder,
+                        new List<NavLinkDefinition>());
                     group.Items.Add(item);
                 }
 
