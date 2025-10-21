@@ -42,6 +42,8 @@ public class UiStackLayoutViewModel
     public string? PageTitle { get; set; }
     public string? AppName { get; set; }
 
+    public bool ContentNoPadding { get; set; }
+
     public UiTheme Theme { get; set; } = UiTheme.Dark;
     public UiLayout Layout { get; set; } = UiLayout.Fluid;
     public UiSidebarTheme SidebarTheme { get; set; } = UiSidebarTheme.Dark;
