@@ -4,7 +4,7 @@
 [![Pipeline stat](https://gitlab.aiursoft.com/aiursoft/uistack/badges/master/pipeline.svg)](https://gitlab.aiursoft.com/aiursoft/uistack/-/pipelines)
 [![Test Coverage](https://gitlab.aiursoft.com/aiursoft/uistack/badges/master/coverage.svg)](https://gitlab.aiursoft.com/aiursoft/uistack/-/pipelines)
 [![ManHours](https://manhours.aiursoft.com/r/gitlab.aiursoft.com/aiursoft/uistack.svg)](https://gitlab.aiursoft.com/aiursoft/uistack/-/commits/master?ref_type=heads)
-[![Website](https://img.shields.io/website?url=https%3A%2F%2Fstack.aiursoft.cn%2F)](https://stack.aiursoft.cn)
+[![Website](https://img.shields.io/website?url=https%3A%2F%2Fstack.aiursoft.com%2F)](https://stack.aiursoft.com)
 [![NuGet version](https://img.shields.io/nuget/v/Aiursoft.UiStack.svg)](https://www.nuget.org/packages/Aiursoft.UiStack/)
 [![Docker](https://img.shields.io/docker/pulls/aiursoft/uistack.svg)](https://hub.docker.com/r/aiursoft/uistack)
 
@@ -14,7 +14,7 @@ Aiursoft UiStack is a front-end framework for Aiursoft projects based on ASP.NET
 
 ## Try
 
-Try a running demo [here](https://stack.aiursoft.cn).
+Try a running demo [here](https://stack.aiursoft.com).
 
 ## Run in Ubuntu
 
