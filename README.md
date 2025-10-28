@@ -3,7 +3,7 @@
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://gitlab.aiursoft.com/aiursoft/uistack/-/blob/master/LICENSE)
 [![Pipeline stat](https://gitlab.aiursoft.com/aiursoft/uistack/badges/master/pipeline.svg)](https://gitlab.aiursoft.com/aiursoft/uistack/-/pipelines)
 [![Test Coverage](https://gitlab.aiursoft.com/aiursoft/uistack/badges/master/coverage.svg)](https://gitlab.aiursoft.com/aiursoft/uistack/-/pipelines)
-[![ManHours](https://manhours.aiursoft.cn/r/gitlab.aiursoft.com/aiursoft/uistack.svg)](https://gitlab.aiursoft.com/aiursoft/uistack/-/commits/master?ref_type=heads)
+[![ManHours](https://manhours.aiursoft.com/r/gitlab.aiursoft.com/aiursoft/uistack.svg)](https://gitlab.aiursoft.com/aiursoft/uistack/-/commits/master?ref_type=heads)
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fstack.aiursoft.cn%2F)](https://stack.aiursoft.cn)
 [![NuGet version](https://img.shields.io/nuget/v/Aiursoft.UiStack.svg)](https://www.nuget.org/packages/Aiursoft.UiStack/)
 [![Docker](https://img.shields.io/docker/pulls/aiursoft/uistack.svg)](https://hub.docker.com/r/aiursoft/uistack)
