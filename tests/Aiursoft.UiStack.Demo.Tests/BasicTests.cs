@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Hosting;
 using static Aiursoft.WebTools.Extends;
 
+[assembly:DoNotParallelize]
+
 namespace Aiursoft.UiStack.Demo.Tests;
 
 [TestClass]

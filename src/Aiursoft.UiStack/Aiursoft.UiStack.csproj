@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <Version>9.0.25</Version>
-    <TargetFramework>net9.0</TargetFramework>
+    <Version>10.0.0</Version>
+    <TargetFramework>net10.0</TargetFramework>
     <AssemblyName>Aiursoft.UiStack</AssemblyName>
     <RootNamespace>Aiursoft.UiStack</RootNamespace>
     <IsTestProject>false</IsTestProject>
@@ -30,6 +30,6 @@
     <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Aiursoft.WebTools" Version="9.0.10" />
+    <PackageReference Include="Aiursoft.WebTools" Version="10.0.1" />
   </ItemGroup>
 </Project>
