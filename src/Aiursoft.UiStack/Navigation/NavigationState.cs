@@ -26,8 +26,23 @@ public class NavigationState<T>
                 var navAttr = method.GetCustomAttribute<RenderInNavBarAttribute>()!;
                 var actionName = method.GetCustomAttribute<ActionNameAttribute>()?.Name ?? method.Name;
 
-                var authorizeAttr = method.GetCustomAttribute<AuthorizeAttribute>();
-                var requiredPolicy = authorizeAttr?.Policy;
+                var controllerAuthorizeAttr = controller.GetCustomAttribute<AuthorizeAttribute>();
+                var methodAuthorizeAttr = method.GetCustomAttribute<AuthorizeAttribute>();
+                var methodAllowAnonymous = method.GetCustomAttribute<AllowAnonymousAttribute>();
+
+                string? requiredPolicy = null;
+                if (methodAllowAnonymous != null)
+                {
+                    requiredPolicy = null;
+                }
+                else if (methodAuthorizeAttr != null)
+                {
+                    requiredPolicy = methodAuthorizeAttr.Policy;
+                }
+                else if (controllerAuthorizeAttr != null)
+                {
+                    requiredPolicy = controllerAuthorizeAttr.Policy;
+                }
 
                 if (!navGroups.TryGetValue(navAttr.NavGroupName, out var group))
                 {
