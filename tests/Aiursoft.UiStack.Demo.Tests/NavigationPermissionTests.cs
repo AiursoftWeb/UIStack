@@ -1,7 +1,6 @@
 using Aiursoft.UiStack.Navigation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Aiursoft.UiStack.Demo.Tests;
 
@@ -21,7 +20,7 @@ public class NavigationPermissionTests
             LinkOrder = 1)]
         public IActionResult ProtectedAction()
         {
-            return View();
+            return Ok();
         }
 
         [AllowAnonymous]
@@ -35,7 +34,7 @@ public class NavigationPermissionTests
             LinkOrder = 2)]
         public IActionResult AnonymousAction()
         {
-            return View();
+            return Ok();
         }
 
         [Authorize(Policy = "ActionPolicy")]
@@ -49,7 +48,7 @@ public class NavigationPermissionTests
             LinkOrder = 3)]
         public IActionResult ActionWithPolicy()
         {
-            return View();
+            return Ok();
         }
     }
 
