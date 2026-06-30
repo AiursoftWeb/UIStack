@@ -10,7 +10,7 @@
         <div class="dropdown-menu-header">
             @Model.Notifications.Count @Localizer["New Notifications"]
         </div>
-        <div class="list-group">
+        <div class="list-group mh-80vh overflow-auto">
             @foreach (var notification in Model.Notifications)
             {
                 <a href="#" class="list-group-item">
