@@ -1,0 +1,74 @@
+@using Aiursoft.UiStack.Views.Shared.Components.SideMenu
+@model Aiursoft.UiStack.Views.Shared.Components.SideMenu.SideBarItem
+
+@{
+    var activeClass = Model.IsActive ? "active" : "";
+    var collapseClass = Model.IsActive ? "" : "collapsed";
+}
+
+@if (Model is CascadedSideBarItem cascade)
+{
+    <li class="sidebar-item @activeClass">
+        <a data-bs-target="#@cascade.UniqueId" data-bs-toggle="collapse"
+           class="sidebar-link @collapseClass">
+            <i class="align-middle" data-lucide="@Model.LucideIcon"></i>
+            <span class="align-middle">@Localizer[Model.Text]</span>
+            @if (Model.Decoration != null)
+            {
+                <span class="badge badge-sidebar-@Model.Decoration.ColorClass">@Localizer[Model.Decoration.Text]</span>
+            }
+        </a>
+        @{ var showClass = Model.IsActive ? "show" : ""; }
+        <ul id="@cascade.UniqueId" class="sidebar-dropdown list-unstyled collapse @showClass"
+            data-bs-parent="#sidebar">
+            @foreach (var link in cascade.Links)
+            {
+                var linkActiveClass = link.IsActive ? "active" : "";
+                <li class="sidebar-item @linkActiveClass">
+                    <a class="sidebar-link" href="@link.Href">
+                        @Localizer[link.Text]
+                        @if (link.Decoration != null)
+                        {
+                            <span class="badge badge-sidebar-@link.Decoration.ColorClass">@Localizer[link.Decoration.Text]</span>
+                        }
+                    </a>
+                </li>
+            }
+        </ul>
+    </li>
+}
+else if (Model is NestedSideBarItem nested)
+{
+    <li class="sidebar-item @activeClass">
+        <a data-bs-target="#@nested.UniqueId" data-bs-toggle="collapse"
+           class="sidebar-link @collapseClass">
+            <i class="align-middle" data-lucide="@Model.LucideIcon"></i>
+            <span class="align-middle">@Localizer[Model.Text]</span>
+            @if (Model.Decoration != null)
+            {
+                <span class="badge badge-sidebar-@Model.Decoration.ColorClass">@Localizer[Model.Decoration.Text]</span>
+            }
+        </a>
+        @{ var showClass = Model.IsActive ? "show" : ""; }
+        <ul id="@nested.UniqueId" class="sidebar-dropdown list-unstyled collapse @showClass"
+            data-bs-parent="#sidebar">
+            @foreach (var child in nested.Children)
+            {
+                @await Html.PartialAsync("Components/SideMenu/_SideBarItem", child)
+            }
+        </ul>
+    </li>
+}
+else if (Model is LinkSideBarItem link)
+{
+    <li class="sidebar-item @activeClass">
+        <a class="sidebar-link" href="@link.Href">
+            <i class="align-middle" data-lucide="@Model.LucideIcon"></i>
+            <span class="align-middle">@Localizer[Model.Text]</span>
+            @if (Model.Decoration != null)
+            {
+                <span class="badge badge-sidebar-@Model.Decoration.ColorClass">@Localizer[Model.Decoration.Text]</span>
+            }
+        </a>
+    </li>
+}

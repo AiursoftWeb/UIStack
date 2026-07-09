@@ -59,3 +59,10 @@ public class Decoration
 
     public required string ColorClass { get; set; } // Can be: primary, warning, danger, success, info, secondary, dark, light
 }
+
+public class NestedSideBarItem : SideBarItem
+{
+    public required string UniqueId { get; set; }
+
+    public List<SideBarItem> Children { get; set; } = [];
+}
