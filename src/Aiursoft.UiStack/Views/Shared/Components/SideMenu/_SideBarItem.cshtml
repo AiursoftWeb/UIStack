@@ -55,7 +55,7 @@ else if (Model is NestedSideBarItem nested)
             data-bs-parent="#@parentId">
             @foreach (var child in nested.Children)
             {
-                @await Html.PartialAsync("Components/SideMenu/_SideBarItem", child, new ViewDataDictionary(ViewData) { { "ParentId", nested.UniqueId } })
+                @await Html.PartialAsync("Components/SideMenu/_SideBarItem", child, new ViewDataDictionary(ViewData) { ["ParentId"] = nested.UniqueId })
             }
         </ul>
     </li>
