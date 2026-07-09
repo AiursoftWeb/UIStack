@@ -64,5 +64,6 @@ public class NestedSideBarItem : SideBarItem
 {
     public required string UniqueId { get; set; }
 
+    // ReSharper disable once CollectionNeverUpdated.Global
     public List<SideBarItem> Children { get; set; } = [];
 }
