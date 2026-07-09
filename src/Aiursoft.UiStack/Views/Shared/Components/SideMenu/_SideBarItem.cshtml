@@ -4,6 +4,7 @@
 @{
     var activeClass = Model.IsActive ? "active" : "";
     var collapseClass = Model.IsActive ? "" : "collapsed";
+    var parentId = ViewData["ParentId"] as string ?? "sidebar";
 }
 
 @if (Model is CascadedSideBarItem cascade)
@@ -20,7 +21,7 @@
         </a>
         @{ var showClass = Model.IsActive ? "show" : ""; }
         <ul id="@cascade.UniqueId" class="sidebar-dropdown list-unstyled collapse @showClass"
-            data-bs-parent="#sidebar">
+            data-bs-parent="#@parentId">
             @foreach (var link in cascade.Links)
             {
                 var linkActiveClass = link.IsActive ? "active" : "";
@@ -51,10 +52,10 @@ else if (Model is NestedSideBarItem nested)
         </a>
         @{ var showClass = Model.IsActive ? "show" : ""; }
         <ul id="@nested.UniqueId" class="sidebar-dropdown list-unstyled collapse @showClass"
-            data-bs-parent="#sidebar">
+            data-bs-parent="#@parentId">
             @foreach (var child in nested.Children)
             {
-                @await Html.PartialAsync("Components/SideMenu/_SideBarItem", child)
+                @await Html.PartialAsync("Components/SideMenu/_SideBarItem", child, new ViewDataDictionary(ViewData) { { "ParentId", nested.UniqueId } })
             }
         </ul>
     </li>
