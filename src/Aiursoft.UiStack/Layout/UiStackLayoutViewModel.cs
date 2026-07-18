@@ -42,6 +42,9 @@ public class UiStackLayoutViewModel
     public string? PageTitle { get; set; }
     public string? AppName { get; set; }
 
+    public string Language { get; set; } = System.Globalization.CultureInfo.CurrentUICulture.Name;
+    public string Direction { get; set; } = System.Globalization.CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft ? "rtl" : "ltr";
+
     public bool ContentNoPadding { get; set; }
 
     public UiTheme Theme { get; set; } = UiTheme.Dark;

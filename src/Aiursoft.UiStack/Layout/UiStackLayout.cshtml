@@ -4,7 +4,8 @@
     @addTagHelper *, Aiursoft.UiStack
 }
 <!DOCTYPE html>
-<html lang="en"
+<html lang="@Model.Language"
+      dir="@Model.Direction"
       data-bs-theme="@Model.Theme.ToString().ToLower()"
       data-layout="@Model.Layout.ToString().ToLower()"
       data-sidebar-theme="@Model.SidebarTheme.ToString().ToLower()"
