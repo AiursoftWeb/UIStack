@@ -15,7 +15,7 @@ public class NotificationsDropdownProvider
                 IconClass = "text-danger",
                 Title = "Server down",
                 Message = "Server was down for 5 minutes.",
-                TriggerTime = DateTime.Now - TimeSpan.FromMinutes(2)
+                TriggerTime = DateTime.UtcNow - TimeSpan.FromMinutes(2)
             },
             new Notification
             {
@@ -23,7 +23,7 @@ public class NotificationsDropdownProvider
                 IconClass = "text-primary",
                 Title = "New user",
                 Message = "A new user registered.",
-                TriggerTime = DateTime.Now - TimeSpan.FromMinutes(5)
+                TriggerTime = DateTime.UtcNow - TimeSpan.FromMinutes(5)
             },
             new Notification
             {
@@ -31,7 +31,7 @@ public class NotificationsDropdownProvider
                 IconClass = "text-warning",
                 Title = "New login",
                 Message = "Your account was logged in from a new device.",
-                TriggerTime = DateTime.Now - TimeSpan.FromMinutes(15)
+                TriggerTime = DateTime.UtcNow - TimeSpan.FromMinutes(15)
             },
             new Notification
             {
@@ -39,7 +39,7 @@ public class NotificationsDropdownProvider
                 IconClass = "text-success",
                 Title = "New follower",
                 Message = "You have a new follower.",
-                TriggerTime = DateTime.Now - TimeSpan.FromMinutes(30)
+                TriggerTime = DateTime.UtcNow - TimeSpan.FromMinutes(30)
             }
         ],
         ViewAllLink = new Link

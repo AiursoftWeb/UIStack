@@ -15,7 +15,7 @@ public class MessagesDropdownProvider
                 SenderName = "Anduin Xue",
                 LatestMessagePreview = "Hello, world!",
                 ClickableLink = "#",
-                LatestMessageTime = DateTime.Now - TimeSpan.FromMinutes(5)
+                LatestMessageTime = DateTime.UtcNow - TimeSpan.FromMinutes(5)
             }
         ],
         ViewAllLink = new Link

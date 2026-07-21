@@ -1,3 +1,4 @@
+@using Aiursoft.CSTools.Tools
 @model Aiursoft.UiStack.Views.Shared.Components.NotificationsDropdown.NotificationsDropdownViewModel
 <li class="nav-item dropdown">
     <a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown" data-bs-toggle="dropdown">
@@ -22,7 +23,7 @@
                         <div class="col-10">
                             <div>@Localizer[notification.Title]</div>
                             <div class="text-muted small mt-1">@Localizer[notification.Message]</div>
-                            <div class="text-muted small mt-1" data-utc-time="@notification.TriggerTime"></div>
+                            <div class="text-muted small mt-1" data-utc-time="@notification.TriggerTime.ToUniversalTime().ToHtmlDateTime()"></div>
                         </div>
                     </div>
                 </a>
