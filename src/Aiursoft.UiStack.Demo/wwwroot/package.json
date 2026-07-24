@@ -5,6 +5,6 @@
   "author": "Anduin Xue",
   "license": "MIT",
   "dependencies": {
-    "@aiursoft/uistack": "^1.0.3"
+    "@aiursoft/uistack": "^1.0.12"
   }
 }
