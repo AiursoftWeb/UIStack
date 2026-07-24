@@ -1,6 +1,6 @@
 {
   "name": "@aiursoft/uistack",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "Aiursoft Modified UI Stack. Source is not open. But dist is open.",
   "files": [
     "dist"

@@ -3,6 +3,7 @@ const Path = require("path");
 const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 const opts = {
   rootDir: process.cwd(),
@@ -42,6 +43,12 @@ module.exports = {
     new Webpack.ProvidePlugin({
       $: "jquery",
       jQuery: "jquery"
+    }),
+    // Copy images to dist
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: "src/img", to: "img" }
+      ]
     }),
     // Ignore momentjs locales
     new Webpack.IgnorePlugin({
