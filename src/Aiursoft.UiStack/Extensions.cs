@@ -24,7 +24,7 @@ public static class Extensions
     public static IApplicationBuilder UseUIStack(this IApplicationBuilder app)
     {
         var assembly = typeof(Extensions).Assembly;
-        var embeddedProvider = new EmbeddedFileProvider(assembly, $"{assembly.GetName().Name}.wwwroot.dist");
+        var embeddedProvider = new EmbeddedFileProvider(assembly, $"{assembly.GetName().Name}.Resources.dist");
 
         app.UseStaticFiles(new StaticFileOptions
         {
