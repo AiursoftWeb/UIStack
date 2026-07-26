@@ -25,7 +25,7 @@
   </PropertyGroup>
 
   <Target Name="BuildFrontend" BeforeTargets="BeforeBuild"
-          Condition="!Exists('wwwroot\dist\css\app.css')">
+          Condition="!Exists('wwwroot/dist/css/app.css')">
     <Exec Command="npm install" WorkingDirectory="../Aiursoft.UiStack.Frontend" />
     <Exec Command="npm run build" WorkingDirectory="../Aiursoft.UiStack.Frontend" />
     <ItemGroup>
@@ -37,10 +37,10 @@
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
     <None Include="../../README.md" Pack="true" PackagePath="." />
-    <EmbeddedResource Include="wwwroot\dist\**\*" />
+    <EmbeddedResource Include="wwwroot/dist/**/*" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\Shared\" />
+    <Folder Include="Views/Shared/" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Aiursoft.WebTools" Version="10.0.13" />
