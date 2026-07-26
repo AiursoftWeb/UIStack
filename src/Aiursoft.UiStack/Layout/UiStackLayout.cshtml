@@ -17,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>@Model.PageTitle | @Model.AppName</title>
     <link rel="shortcut icon" href="~/favicon.svg">
-    <link href="@Url.Content("~/UIStack/dist/css/app.css")" rel="stylesheet">
+    <link href="@Url.Content("~/node_modules/@aiursoft/uistack/dist/css/app.css")" rel="stylesheet">
     @(await RenderSectionAsync("styles", required: false))
 </head>
 
@@ -47,7 +47,7 @@
 </div>
 </div>
 
-<script src="@Url.Content("~/UIStack/dist/js/app.js")"></script>
+<script src="@Url.Content("~/node_modules/@aiursoft/uistack/dist/js/app.js")"></script>
 @(await RenderSectionAsync("scripts", false))
 
 </body>
