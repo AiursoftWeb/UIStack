@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <Version>10.0.21</Version>
+    <Version>10.0.22</Version>
     <TargetFramework>net10.0</TargetFramework>
     <AssemblyName>Aiursoft.UiStack</AssemblyName>
     <RootNamespace>Aiursoft.UiStack</RootNamespace>
@@ -23,9 +23,21 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
   </PropertyGroup>
+
+  <Target Name="BuildFrontend" BeforeTargets="BeforeBuild"
+          Condition="!Exists('wwwroot\dist\css\app.css')">
+    <Exec Command="npm install" WorkingDirectory="../Aiursoft.UiStack.Frontend" />
+    <Exec Command="npm run build" WorkingDirectory="../Aiursoft.UiStack.Frontend" />
+    <ItemGroup>
+      <_FrontendDistFiles Include="../Aiursoft.UiStack.Frontend/dist/**" />
+    </ItemGroup>
+    <Copy SourceFiles="@(_FrontendDistFiles)" DestinationFolder="wwwroot/dist/%(RecursiveDir)" />
+  </Target>
+
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
     <None Include="../../README.md" Pack="true" PackagePath="." />
+    <EmbeddedResource Include="wwwroot\dist\**\*" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Shared\" />

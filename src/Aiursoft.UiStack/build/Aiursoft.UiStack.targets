@@ -1,0 +1,14 @@
+<Project>
+  <!--
+    Copy UIStack static assets from NuGet cache to the consuming project's wwwroot.
+    No StaticWebAsset props needed — files are served by UseStaticFiles.
+  -->
+  <Target Name="CopyUIStackAssets" AfterTargets="Build">
+    <ItemGroup>
+      <_UIStackAssets Include="$(MSBuildThisFileDirectory)..\staticwebassets\dist\**\*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(_UIStackAssets)"
+          DestinationFolder="wwwroot\UIStack\dist\%(RecursiveDir)"
+          SkipUnchangedFiles="true" />
+  </Target>
+</Project>
