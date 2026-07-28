@@ -1,0 +1,54 @@
+{
+  "name": "@aiursoft/uistack-markdown-ui",
+  "version": "1.0.1",
+  "description": "Shared, secure Markdown editing and reading utilities for Aiursoft applications.",
+  "license": "MIT",
+  "type": "module",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "browser": "./dist/index.global.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./browser": "./dist/index.global.js"
+  },
+  "scripts": {
+    "clean": "rimraf dist coverage",
+    "build": "npm run clean && tsup",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --coverage",
+    "check": "npm run typecheck && npm test && npm run build"
+  },
+  "dependencies": {
+    "highlight.js": "11.11.1",
+    "markdown-it": "14.3.0"
+  },
+  "devDependencies": {
+    "@types/markdown-it": "14.1.2",
+    "@vitest/coverage-v8": "4.1.10",
+    "jsdom": "26.1.0",
+    "rimraf": "6.0.1",
+    "tsup": "8.5.0",
+    "typescript": "5.8.3",
+    "vitest": "4.1.10"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.aiursoft.com/aiursoft/uistack.git",
+    "directory": "src/Aiursoft.UiStack.MarkdownUi"
+  }
+}
