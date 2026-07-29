@@ -15,3 +15,17 @@ export type {
   ImageUploadOptions,
   MarkdownEditor
 } from "./image-upload";
+export { createMarkdownEditor } from "./editor";
+export type {
+  CreateMarkdownEditorOptions,
+  MarkdownEditorController,
+  MarkdownViewMode,
+  MarkdownViewModeControl,
+  MonacoApi,
+  MonacoDisposable,
+  MonacoEditorInstance,
+  MonacoKeyboardEvent,
+  MonacoModel,
+  MonacoPosition,
+  MonacoSelection
+} from "./editor";
