@@ -122,3 +122,19 @@ const uploads = attachImageUpload({
 The default queue uploads three files concurrently and retries HTTP 429 responses up
 to five times. Use `getImageUrl` when an endpoint does not return `internetPath` or
 `InternetPath`.
+
+## Aiursoft application contract
+
+MarkToHtml, MoongladeV2, EmployeeCenter and Kanban use the global IIFE build and the
+same `createMarkdownEditor` contract. Monaco, live preview, highlight.js, Mermaid,
+MathJax, Markdown shortcuts, image paste/drop, editor/split/preview modes and the
+textarea fallback are required capabilities for these full editors.
+
+DocsViewer and HowToCookViewer are reader-only consumers. Their Markdown containers
+use `initializeMarkdownReader` for highlighting, Mermaid, MathJax, responsive tables
+and safe external-link behavior.
+
+Translate is an intentional product-level exception. It keeps its lightweight
+CodeMirror Markdown input because translation does not need code highlighting,
+Mermaid, MathJax, uploads or the full editing toolbar. It must not be treated as an
+incomplete migration.

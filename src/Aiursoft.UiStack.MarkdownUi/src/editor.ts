@@ -342,7 +342,9 @@ export async function createMarkdownEditor(
         options.onPreviewRendered?.(markdown);
       }
     } catch (error) {
-      options.onError?.(error);
+      if (!disposed && generation === previewGeneration) {
+        options.onError?.(error);
+      }
     }
   };
 

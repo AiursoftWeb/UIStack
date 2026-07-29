@@ -44,4 +44,30 @@ describe("Markdown reader", () => {
     expect(link.rel).toContain("noopener");
     expect(link.rel).toContain("noreferrer");
   });
+
+  it("serializes Mermaid and MathJax work across rapid preview refreshes", async () => {
+    document.body.innerHTML = `
+      <main id="first"><pre><code class="language-mermaid">graph TD; A--&gt;B</code></pre></main>
+      <main id="second"><pre><code class="language-mermaid">graph TD; B--&gt;C</code></pre></main>`;
+    let releaseFirstMermaid: (() => void) | undefined;
+    const run = vi.fn()
+      .mockImplementationOnce(() => new Promise<void>(resolve => {
+        releaseFirstMermaid = resolve;
+      }))
+      .mockResolvedValue(undefined);
+    const typesetPromise = vi.fn().mockResolvedValue(undefined);
+    const mermaid = { initialize: vi.fn(), run };
+    const MathJax = { typesetPromise };
+
+    const first = enhanceMarkdown({ container: "#first", mermaid, MathJax });
+    await vi.waitFor(() => expect(run).toHaveBeenCalledTimes(1));
+    const second = enhanceMarkdown({ container: "#second", mermaid, MathJax });
+
+    expect(run).toHaveBeenCalledTimes(1);
+    releaseFirstMermaid?.();
+    await Promise.all([first, second]);
+
+    expect(run).toHaveBeenCalledTimes(2);
+    expect(typesetPromise).toHaveBeenCalledTimes(2);
+  });
 });

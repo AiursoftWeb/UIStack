@@ -29,6 +29,19 @@ export interface RenderReaderOptions extends ReaderDependencies {
 
 type MarkdownGlobals = typeof globalThis & ReaderDependencies;
 
+let mermaidQueue: Promise<void> = Promise.resolve();
+let mathJaxQueue: Promise<void> = Promise.resolve();
+
+function serialize(
+  queue: Promise<void>,
+  work: () => Promise<void>,
+  updateQueue: (next: Promise<void>) => void
+): Promise<void> {
+  const result = queue.then(work);
+  updateQueue(result.catch(() => undefined));
+  return result;
+}
+
 function containersOf(target: RenderReaderOptions["container"]): HTMLElement[] {
   if (typeof target === "string") return Array.from(document.querySelectorAll<HTMLElement>(target));
   if (target instanceof HTMLElement) return [target];
@@ -100,18 +113,30 @@ export async function enhanceMarkdown(options: RenderReaderOptions): Promise<voi
       }
     }
     if (nodes.length > 0) {
-      mermaid.initialize({
-        startOnLoad: false,
-        securityLevel: "strict",
-        theme: options.mermaidTheme
+      await serialize(mermaidQueue, async () => {
+        const connectedNodes = nodes.filter(node => node.isConnected);
+        if (connectedNodes.length === 0) return;
+        mermaid.initialize({
+          startOnLoad: false,
+          securityLevel: "strict",
+          theme: options.mermaidTheme
+        });
+        await mermaid.run({ nodes: connectedNodes });
+      }, next => {
+        mermaidQueue = next;
       });
-      await mermaid.run({ nodes });
     }
   }
 
   if (mathJax) {
-    await mathJax.startup?.promise;
-    await mathJax.typesetPromise(containers);
+    await serialize(mathJaxQueue, async () => {
+      const connectedContainers = containers.filter(container => container.isConnected);
+      if (connectedContainers.length === 0) return;
+      await mathJax.startup?.promise;
+      await mathJax.typesetPromise(connectedContainers);
+    }, next => {
+      mathJaxQueue = next;
+    });
   }
 }
 
