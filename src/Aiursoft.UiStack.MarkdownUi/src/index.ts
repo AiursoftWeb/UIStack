@@ -1,6 +1,6 @@
 export { createMarkdownIt, renderMarkdown } from "./markdown";
 export type { MarkdownOptions } from "./markdown";
-export { enhanceMarkdown, printMarkdown } from "./reader";
+export { enhanceMarkdown, initializeMarkdownReader, printMarkdown } from "./reader";
 export type {
   Highlighter,
   MathJaxApi,
@@ -15,12 +15,13 @@ export type {
   ImageUploadOptions,
   MarkdownEditor
 } from "./image-upload";
-export { createMarkdownEditor } from "./editor";
+export { createMarkdownEditor, loadMonacoFromAmd } from "./editor";
 export type {
   CreateMarkdownEditorOptions,
   MarkdownEditorController,
   MarkdownViewMode,
   MarkdownViewModeControl,
+  MonacoAmdLoader,
   MonacoApi,
   MonacoDisposable,
   MonacoEditorInstance,

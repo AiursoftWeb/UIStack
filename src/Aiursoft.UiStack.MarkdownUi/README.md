@@ -42,13 +42,7 @@ const markdownEditor = await createMarkdownEditor({
   editorPane: document.querySelector("#editor-pane"),
   previewPane: document.querySelector("#preview-pane"),
   form: document.querySelector("form"),
-  loadMonaco: () => new Promise((resolve, reject) => {
-    window.require(
-      ["vs/editor/editor.main"],
-      () => resolve(window.monaco),
-      reject
-    );
-  }),
+  loadMonaco: () => AiursoftMarkdownUi.loadMonacoFromAmd(),
   theme: "vs-dark",
   uploadUrl: "/api/files/upload",
   initialViewMode: "split",
@@ -66,6 +60,7 @@ const markdownEditor = await createMarkdownEditor({
 });
 
 await markdownEditor.setViewMode("preview");
+markdownEditor.syncTextarea();
 markdownEditor.setValue("# Updated");
 markdownEditor.focus();
 markdownEditor.dispose();
@@ -90,9 +85,12 @@ their own.
 ## Reading pages
 
 ```js
-import { enhanceMarkdown, printMarkdown } from "@aiursoft/uistack-markdown-ui";
+import {
+  initializeMarkdownReader,
+  printMarkdown
+} from "@aiursoft/uistack-markdown-ui";
 
-await enhanceMarkdown({
+await initializeMarkdownReader({
   container: ".markdown-body",
   hljs,
   mermaid,
@@ -104,7 +102,8 @@ printButton.addEventListener("click", () =>
 ```
 
 Only code blocks inside the supplied container are highlighted. Mermaid is always
-initialized in strict security mode.
+initialized in strict security mode. The reader also applies the shared responsive
+Bootstrap table treatment and opens rendered links with `noopener noreferrer`.
 
 ## Image paste and drop
 

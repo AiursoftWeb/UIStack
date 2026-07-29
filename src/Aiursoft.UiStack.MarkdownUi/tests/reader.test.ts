@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from "vitest";
-import { enhanceMarkdown } from "../src";
+import { enhanceMarkdown, initializeMarkdownReader } from "../src";
 
 describe("Markdown reader", () => {
   it("scopes highlighting and renders Mermaid in strict mode", async () => {
@@ -25,5 +25,23 @@ describe("Markdown reader", () => {
     expect(run).toHaveBeenCalledOnce();
     expect(document.querySelector("#markdown .mermaid")?.textContent).toContain("graph TD");
     expect(typesetPromise).toHaveBeenCalledOnce();
+  });
+
+  it("uses the shared reader decorations for tables and links", async () => {
+    document.body.innerHTML = `
+      <main id="markdown">
+        <table><tbody><tr><td>value</td></tr></tbody></table>
+        <a href="https://www.aiursoft.com/">Aiursoft</a>
+      </main>`;
+
+    await initializeMarkdownReader({ container: "#markdown" });
+
+    const table = document.querySelector("table")!;
+    expect(table.classList.contains("table")).toBe(true);
+    expect(table.parentElement?.classList.contains("table-responsive")).toBe(true);
+    const link = document.querySelector("a")!;
+    expect(link.target).toBe("_blank");
+    expect(link.rel).toContain("noopener");
+    expect(link.rel).toContain("noreferrer");
   });
 });

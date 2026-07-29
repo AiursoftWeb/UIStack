@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import {
   createMarkdownEditor,
+  loadMonacoFromAmd,
   type MonacoApi,
   type MonacoEditorInstance,
   type MonacoKeyboardEvent,
@@ -167,10 +168,27 @@ describe("createMarkdownEditor", () => {
     expect(nodes.textarea.value).toBe("**Changed**");
     expect(nodes.preview.innerHTML).toContain("<strong>Changed</strong>");
     expect(onChange).toHaveBeenCalledWith("**Changed**");
+    controller.syncTextarea();
+    expect(nodes.textarea.value).toBe("**Changed**");
 
     controller.dispose();
     expect(editor.dispose).toHaveBeenCalledOnce();
     expect(nodes.textarea.style.display).toBe("");
+  });
+
+  it("loads Monaco through the shared AMD loader", async () => {
+    const { monaco } = fakeMonaco();
+    const originalMonaco = (globalThis as typeof globalThis & { monaco?: MonacoApi }).monaco;
+    (globalThis as typeof globalThis & { monaco?: MonacoApi }).monaco = monaco;
+    const amdRequire = vi.fn((_dependencies, onLoad: () => void) => onLoad());
+
+    await expect(loadMonacoFromAmd(amdRequire)).resolves.toBe(monaco);
+    expect(amdRequire).toHaveBeenCalledWith(
+      ["vs/editor/editor.main"],
+      expect.any(Function),
+      expect.any(Function)
+    );
+    (globalThis as typeof globalThis & { monaco?: MonacoApi }).monaco = originalMonaco;
   });
 
   it("uses the textarea as a functional fallback when Monaco fails", async () => {

@@ -109,12 +109,43 @@ export interface MarkdownEditorController {
   readonly editor: MonacoEditorInstance | null;
   readonly isFallback: boolean;
   getValue(): string;
+  syncTextarea(): void;
   setValue(markdown: string): void;
   focus(): void;
   getViewMode(): MarkdownViewMode;
   setViewMode(mode: MarkdownViewMode): Promise<void>;
   refreshPreview(): Promise<void>;
   dispose(): void;
+}
+
+export interface MonacoAmdLoader {
+  (
+    dependencies: string[],
+    onLoad: () => void,
+    onError?: (error: unknown) => void
+  ): void;
+}
+
+export function loadMonacoFromAmd(
+  amdRequire: MonacoAmdLoader | undefined = (globalThis as typeof globalThis & {
+    require?: MonacoAmdLoader;
+  }).require
+): Promise<MonacoApi> {
+  return new Promise((resolve, reject) => {
+    if (typeof amdRequire !== "function") {
+      reject(new Error("Monaco AMD loader is unavailable."));
+      return;
+    }
+    amdRequire(
+      ["vs/editor/editor.main"],
+      () => {
+        const monaco = (globalThis as typeof globalThis & { monaco?: MonacoApi }).monaco;
+        if (monaco) resolve(monaco);
+        else reject(new Error("Monaco AMD module loaded without exposing window.monaco."));
+      },
+      reject
+    );
+  });
 }
 
 const modes: MarkdownViewMode[] = ["editor", "split", "preview"];
@@ -393,6 +424,7 @@ export async function createMarkdownEditor(
       return editor === null;
     },
     getValue,
+    syncTextarea,
     setValue(markdown) {
       if (editor) editor.setValue(markdown);
       options.textarea.value = markdown;
