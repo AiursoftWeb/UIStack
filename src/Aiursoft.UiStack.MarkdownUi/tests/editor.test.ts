@@ -243,6 +243,40 @@ describe("createMarkdownEditor", () => {
     expect(onPreviewRendered).toHaveBeenCalled();
   });
 
+  it("defers Mermaid enhancement until the preview pane is visible", async () => {
+    vi.useFakeTimers();
+    const nodes = elements();
+    const { monaco, editor } = fakeMonaco();
+    const mermaid = {
+      initialize: vi.fn(),
+      run: vi.fn(async () => undefined)
+    };
+    const controller = await createMarkdownEditor({
+      editorContainer: nodes.editorContainer,
+      editorPane: nodes.editorPane,
+      textarea: nodes.textarea,
+      previewContainer: nodes.preview,
+      previewPane: nodes.preview,
+      monaco,
+      mermaid,
+      debounceMs: 5,
+      initialViewMode: "editor"
+    });
+
+    editor.value = "```mermaid\ngraph TD\nA --> B\n```";
+    editor.change();
+    await vi.advanceTimersByTimeAsync(5);
+
+    expect(nodes.preview.hidden).toBe(true);
+    expect(nodes.preview.querySelector("code.language-mermaid")).not.toBeNull();
+    expect(mermaid.run).not.toHaveBeenCalled();
+
+    await controller.setViewMode("preview");
+
+    expect(nodes.preview.hidden).toBe(false);
+    expect(mermaid.run).toHaveBeenCalledOnce();
+  });
+
   it("registers Markdown shortcuts, save and ordered-list continuation", async () => {
     const nodes = elements();
     nodes.textarea.value = "text";

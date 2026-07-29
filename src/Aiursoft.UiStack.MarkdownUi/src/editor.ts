@@ -330,6 +330,12 @@ export async function createMarkdownEditor(
     const generation = ++previewGeneration;
     const markdown = getValue();
     options.previewContainer.innerHTML = renderMarkdown(markdown, options.markdownOptions);
+    // Mermaid calculates edge and label positions from the rendered element's
+    // dimensions. Running it while an editor-only view hides the preview pane
+    // can make those dimensions zero and causes Mermaid's layout engine to
+    // throw. Keep the hidden preview HTML current, then enhance it after the
+    // preview becomes visible in updateMode().
+    if (viewMode === "editor") return;
     try {
       await enhanceMarkdown({
         container: options.previewContainer,
