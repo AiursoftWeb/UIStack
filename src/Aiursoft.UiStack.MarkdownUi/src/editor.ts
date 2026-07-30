@@ -424,7 +424,8 @@ export async function createMarkdownEditor(
       uploadController = attachImageUpload({
         ...options.imageUploadOptions,
         editor,
-        uploadUrl: options.uploadUrl
+        uploadUrl: options.uploadUrl,
+        eventTarget: options.editorContainer.parentElement ?? options.editorContainer
       });
     }
   } catch (error) {

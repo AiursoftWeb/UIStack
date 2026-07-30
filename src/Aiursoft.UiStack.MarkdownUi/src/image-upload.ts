@@ -23,6 +23,7 @@ export interface MarkdownEditor {
 export interface ImageUploadOptions {
   editor: MarkdownEditor;
   uploadUrl: string;
+  eventTarget?: HTMLElement;
   fieldName?: string;
   concurrency?: number;
   maxRetries?: number;
@@ -38,6 +39,16 @@ export interface ImageUploadController {
 
 const imageFiles = (files: Iterable<File>): File[] =>
   Array.from(files).filter(file => file.type.startsWith("image/"));
+
+function clipboardImageFiles(data: DataTransfer | null): File[] {
+  if (!data) return [];
+  const files = imageFiles(data.files);
+  if (files.length > 0) return files;
+  return Array.from(data.items)
+    .filter(item => item.kind === "file")
+    .map(item => item.getAsFile())
+    .filter((file): file is File => file !== null && file.type.startsWith("image/"));
+}
 
 function replaceOnce(editor: MarkdownEditor, marker: string, value: string): void {
   editor.setValue(editor.getValue().replace(marker, value));
@@ -110,11 +121,12 @@ export function attachImageUpload(options: ImageUploadOptions): ImageUploadContr
     await Promise.all(Array.from({ length: Math.min(concurrency, jobs.length) }, worker));
   };
 
-  const node = options.editor.getDomNode?.();
+  const node = options.eventTarget ?? options.editor.getDomNode?.();
   const onPaste = (event: ClipboardEvent): void => {
-    const files = event.clipboardData?.files;
-    if (files && imageFiles(files).length > 0) {
+    const files = clipboardImageFiles(event.clipboardData);
+    if (files.length > 0) {
       event.preventDefault();
+      event.stopPropagation();
       void upload(files);
     }
   };
@@ -128,14 +140,17 @@ export function attachImageUpload(options: ImageUploadOptions): ImageUploadContr
       void upload(files);
     }
   };
-  node?.addEventListener("paste", onPaste);
+  // Monaco installs its own capture listener on the host container before this
+  // controller is created. createMarkdownEditor supplies the host's parent so
+  // image paste is captured before the event reaches Monaco's listener.
+  node?.addEventListener("paste", onPaste, true);
   node?.addEventListener("dragover", onDragOver);
   node?.addEventListener("drop", onDrop);
 
   return {
     upload,
     dispose() {
-      node?.removeEventListener("paste", onPaste);
+      node?.removeEventListener("paste", onPaste, true);
       node?.removeEventListener("dragover", onDragOver);
       node?.removeEventListener("drop", onDrop);
     }

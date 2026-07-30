@@ -119,6 +119,7 @@ import { attachImageUpload } from "@aiursoft/uistack-markdown-ui";
 
 const uploads = attachImageUpload({
   editor,
+  eventTarget: editorContainer.parentElement,
   uploadUrl: "/api/files/upload",
   onError: (error, file) => console.error(`Failed to upload ${file.name}`, error)
 });
@@ -127,8 +128,11 @@ const uploads = attachImageUpload({
 ```
 
 The default queue uploads three files concurrently and retries HTTP 429 responses up
-to five times. Use `getImageUrl` when an endpoint does not return `internetPath` or
-`InternetPath`.
+to five times. Clipboard images are accepted from both `clipboardData.files` and
+`clipboardData.items`, and are captured before Monaco consumes the paste event. Use
+the parent of Monaco's host container as `eventTarget`; `createMarkdownEditor()` does
+this automatically. Use `getImageUrl` when an endpoint does not return
+`internetPath` or `InternetPath`.
 
 ## Aiursoft application contract
 

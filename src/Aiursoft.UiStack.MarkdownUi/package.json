@@ -1,6 +1,6 @@
 {
   "name": "@aiursoft/uistack-markdown-ui",
-  "version": "1.2.4",
+  "version": "1.2.6",
   "description": "Shared, secure Markdown editing and reading utilities for Aiursoft applications.",
   "license": "MIT",
   "type": "module",

@@ -65,4 +65,59 @@ describe("Image uploads", () => {
     expect(fetcher).not.toHaveBeenCalled();
     expect(editor.value).toBe("unchanged");
   });
+
+  it("captures pasted images from an ancestor before Monaco's earlier host capture listener", async () => {
+    const eventTarget = document.createElement("div");
+    const editorContainer = document.createElement("div");
+    const editorNode = document.createElement("div");
+    const monacoInput = document.createElement("textarea");
+    editorNode.appendChild(monacoInput);
+    editorContainer.appendChild(editorNode);
+    eventTarget.appendChild(editorContainer);
+    document.body.appendChild(eventTarget);
+    const editor = {
+      ...editorWithValue(),
+      getDomNode: () => editorNode
+    };
+    const pastedImage = new File(["image"], "clipboard.png", { type: "image/png" });
+    const fetcher = vi.fn().mockResolvedValue(
+      new Response(JSON.stringify({ internetPath: "/files/clipboard.png" }), {
+        status: 200,
+        headers: { "Content-Type": "application/json" }
+      })
+    );
+    const monacoPaste = vi.fn();
+    // Monaco's getContainerDomNode() is the host passed to editor.create(),
+    // and its listener is registered before attachImageUpload().
+    editorContainer.addEventListener("paste", event => {
+      monacoPaste();
+      event.preventDefault();
+      event.stopImmediatePropagation();
+    }, true);
+    attachImageUpload({
+      editor,
+      uploadUrl: "/upload",
+      eventTarget,
+      fetch: fetcher
+    });
+    const paste = new Event("paste", { bubbles: true, cancelable: true }) as ClipboardEvent;
+    Object.defineProperty(paste, "clipboardData", {
+      value: {
+        files: [],
+        items: [{
+          kind: "file",
+          type: "image/png",
+          getAsFile: () => pastedImage
+        }]
+      }
+    });
+
+    monacoInput.dispatchEvent(paste);
+    await vi.waitFor(() =>
+      expect(editor.value).toBe("![clipboard.png](/files/clipboard.png)"));
+
+    expect(paste.defaultPrevented).toBe(true);
+    expect(monacoPaste).not.toHaveBeenCalled();
+    expect(fetcher).toHaveBeenCalledOnce();
+  });
 });
