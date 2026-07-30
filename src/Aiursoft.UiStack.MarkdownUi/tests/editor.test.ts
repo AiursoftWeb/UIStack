@@ -195,7 +195,8 @@ describe("createMarkdownEditor", () => {
     vi.useFakeTimers();
     const nodes = elements();
     nodes.textarea.style.display = "none";
-    const onError = vi.fn();
+    const onInitializationError = vi.fn();
+    const onPreviewError = vi.fn();
     const controller = await createMarkdownEditor({
       editorContainer: nodes.editorContainer,
       textarea: nodes.textarea,
@@ -204,16 +205,50 @@ describe("createMarkdownEditor", () => {
         throw new Error("load failed");
       },
       debounceMs: 5,
-      onError
+      onInitializationError,
+      onPreviewError
     });
 
     expect(controller.isFallback).toBe(true);
     expect(nodes.textarea.style.display).toBe("");
+    expect(nodes.editorContainer.hidden).toBe(true);
     nodes.textarea.value = "# Fallback";
     nodes.textarea.dispatchEvent(new Event("input"));
     await vi.advanceTimersByTimeAsync(5);
     expect(nodes.preview.innerHTML).toContain("<h1>Fallback</h1>");
-    expect(onError).toHaveBeenCalledOnce();
+    expect(onInitializationError).toHaveBeenCalledOnce();
+    expect(onPreviewError).not.toHaveBeenCalled();
+  });
+
+  it("reports preview errors without replacing Monaco with the textarea fallback", async () => {
+    const nodes = elements();
+    const { monaco } = fakeMonaco();
+    const previewError = new Error("Mermaid failed");
+    const onInitializationError = vi.fn();
+    const onPreviewError = vi.fn();
+    const controller = await createMarkdownEditor({
+      editorContainer: nodes.editorContainer,
+      textarea: nodes.textarea,
+      previewContainer: nodes.preview,
+      monaco,
+      mermaid: {
+        initialize: vi.fn(),
+        run: vi.fn(async () => {
+          throw previewError;
+        })
+      },
+      onInitializationError,
+      onPreviewError
+    });
+
+    controller.setValue("```mermaid\ngraph TD\nA --> B\n```");
+    await controller.refreshPreview();
+
+    expect(controller.isFallback).toBe(false);
+    expect(nodes.textarea.style.display).toBe("none");
+    expect(nodes.editorContainer.hidden).toBe(false);
+    expect(onInitializationError).not.toHaveBeenCalled();
+    expect(onPreviewError).toHaveBeenCalledWith(previewError);
   });
 
   it("persists view modes and refreshes preview when it becomes visible", async () => {

@@ -102,6 +102,9 @@ export interface CreateMarkdownEditorOptions extends ReaderDependencies {
   onSave?: (markdown: string) => void | Promise<void>;
   onChange?: (markdown: string) => void;
   onPreviewRendered?: (markdown: string) => void;
+  onInitializationError?: (error: unknown) => void;
+  onPreviewError?: (error: unknown) => void;
+  /** @deprecated Use onInitializationError and onPreviewError instead. */
   onError?: (error: unknown) => void;
 }
 
@@ -305,6 +308,7 @@ export async function createMarkdownEditor(
   const previewPane = options.previewPane ?? options.previewContainer;
   const controls = Array.from(options.viewModeControls ?? []);
   const originalTextareaDisplay = options.textarea.style.display;
+  const originalEditorContainerHidden = options.editorContainer.hidden;
   const originalEditorHidden = editorPane.hidden;
   const originalPreviewHidden = previewPane.hidden;
   const disposables: MonacoDisposable[] = [];
@@ -329,14 +333,14 @@ export async function createMarkdownEditor(
     if (disposed) return;
     const generation = ++previewGeneration;
     const markdown = getValue();
-    options.previewContainer.innerHTML = renderMarkdown(markdown, options.markdownOptions);
-    // Mermaid calculates edge and label positions from the rendered element's
-    // dimensions. Running it while an editor-only view hides the preview pane
-    // can make those dimensions zero and causes Mermaid's layout engine to
-    // throw. Keep the hidden preview HTML current, then enhance it after the
-    // preview becomes visible in updateMode().
-    if (viewMode === "editor") return;
     try {
+      options.previewContainer.innerHTML = renderMarkdown(markdown, options.markdownOptions);
+      // Mermaid calculates edge and label positions from the rendered element's
+      // dimensions. Running it while an editor-only view hides the preview pane
+      // can make those dimensions zero and causes Mermaid's layout engine to
+      // throw. Keep the hidden preview HTML current, then enhance it after the
+      // preview becomes visible in updateMode().
+      if (viewMode === "editor") return;
       await enhanceMarkdown({
         container: options.previewContainer,
         hljs: options.hljs,
@@ -349,6 +353,7 @@ export async function createMarkdownEditor(
       }
     } catch (error) {
       if (!disposed && generation === previewGeneration) {
+        options.onPreviewError?.(error);
         options.onError?.(error);
       }
     }
@@ -418,11 +423,16 @@ export async function createMarkdownEditor(
       });
     }
   } catch (error) {
+    editor?.dispose();
+    editor = null;
     options.textarea.style.removeProperty("display");
+    options.editorContainer.hidden = true;
+    options.onInitializationError?.(error);
     options.onError?.(error);
   }
 
   await updateMode(viewMode);
+  if (!editor) options.editorContainer.hidden = true;
 
   return {
     get editor() {
@@ -458,6 +468,7 @@ export async function createMarkdownEditor(
       options.textarea.removeEventListener("input", onTextareaInput);
       form?.removeEventListener("submit", onFormSubmit);
       options.textarea.style.display = originalTextareaDisplay;
+      options.editorContainer.hidden = originalEditorContainerHidden;
       editorPane.hidden = originalEditorHidden;
       previewPane.hidden = originalPreviewHidden;
     }

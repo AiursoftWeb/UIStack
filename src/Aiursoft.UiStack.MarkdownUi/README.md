@@ -56,7 +56,8 @@ const markdownEditor = await createMarkdownEditor({
   mermaid,
   MathJax,
   onSave: markdown => saveMarkdown(markdown),
-  onError: error => console.error(error)
+  onInitializationError: error => console.error("Monaco failed to initialize", error),
+  onPreviewError: error => console.error("Markdown preview failed", error)
 });
 
 await markdownEditor.setViewMode("preview");
@@ -80,7 +81,9 @@ paste and drop, and registers consistent Markdown shortcuts:
 
 If Monaco cannot be loaded, the original textarea becomes visible and continues to drive
 the same preview. Applications therefore use one fallback policy instead of implementing
-their own.
+their own. Preview enhancement errors are reported through `onPreviewError` and never
+replace a working Monaco editor. `onError` remains as a deprecated compatibility callback
+for both error categories.
 
 ## Reading pages
 
