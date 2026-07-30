@@ -69,7 +69,11 @@ markdownEditor.dispose();
 
 The controller initializes Monaco for Markdown, keeps the original textarea synchronized,
 debounces secure preview rendering, enhances highlight.js/Mermaid/MathJax, supports image
-paste and drop, and registers consistent Markdown shortcuts:
+paste and drop, and applies consistent professional Monaco defaults (14px Cascadia Code
+font stack, ligatures, semantic highlighting and comfortable vertical padding). Applications
+can still override individual Monaco settings through `editorOptions`.
+
+It also registers consistent Markdown shortcuts:
 
 - <kbd>Ctrl/Cmd+B</kbd>: bold
 - <kbd>Ctrl/Cmd+I</kbd>: italic

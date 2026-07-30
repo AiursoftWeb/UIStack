@@ -149,6 +149,7 @@ describe("createMarkdownEditor", () => {
     vi.useFakeTimers();
     const nodes = elements();
     const { monaco, editor } = fakeMonaco();
+    const createEditor = vi.spyOn(monaco.editor, "create");
     const onChange = vi.fn();
     const controller = await createMarkdownEditor({
       ...nodes,
@@ -159,6 +160,15 @@ describe("createMarkdownEditor", () => {
     });
 
     expect(controller.isFallback).toBe(false);
+    expect(createEditor).toHaveBeenCalledWith(nodes.editorContainer, expect.objectContaining({
+      language: "markdown",
+      wordWrap: "on",
+      fontFamily: expect.stringContaining("Cascadia Code"),
+      fontSize: 14,
+      fontLigatures: true,
+      "semanticHighlighting.enabled": true,
+      padding: { top: 12, bottom: 12 }
+    }));
     expect(nodes.textarea.style.display).toBe("none");
     expect(nodes.preview.innerHTML).toContain("<h2>Initial</h2>");
 

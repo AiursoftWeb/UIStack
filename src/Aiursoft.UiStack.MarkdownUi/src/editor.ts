@@ -404,6 +404,11 @@ export async function createMarkdownEditor(
       wordWrap: "on",
       minimap: { enabled: false },
       scrollBeyondLastLine: false,
+      "semanticHighlighting.enabled": true,
+      fontFamily: "'Cascadia Code', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace",
+      fontSize: 14,
+      fontLigatures: true,
+      padding: { top: 12, bottom: 12 },
       ...options.editorOptions
     });
     options.textarea.style.display = "none";
