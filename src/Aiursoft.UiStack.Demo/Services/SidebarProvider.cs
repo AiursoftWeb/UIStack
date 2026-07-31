@@ -44,6 +44,7 @@ public class SidebarProvider
                                     IsActive = true
                                 },
                                 new CascadedLink { Href = "/home/analytics", Text = "Analytics" },
+                                new CascadedLink { Href = "/home/markdown", Text = "Markdown Editor" },
                                 new CascadedLink { Href = "#", Text = "SaaS" },
                                 new CascadedLink { Href = "#", Text = "Social" },
                                 new CascadedLink { Href = "#", Text = "Crypto" }

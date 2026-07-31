@@ -121,8 +121,13 @@ export function attachImageUpload(options: ImageUploadOptions): ImageUploadContr
     await Promise.all(Array.from({ length: Math.min(concurrency, jobs.length) }, worker));
   };
 
-  const node = options.eventTarget ?? options.editor.getDomNode?.();
-  const onPaste = (event: ClipboardEvent): void => {
+  const editorRoot = options.eventTarget ?? options.editor.getDomNode?.();
+
+  // Paste listener on document (capture phase) guarantees interception before
+  // any child element -- including Monaco's internal textarea -- processes the
+  // paste event. The containment check limits processing to this editor instance.
+  const onDocumentPaste = (event: ClipboardEvent): void => {
+    if (!editorRoot?.contains(event.target as Node)) return;
     const files = clipboardImageFiles(event.clipboardData);
     if (files.length > 0) {
       event.preventDefault();
@@ -130,6 +135,9 @@ export function attachImageUpload(options: ImageUploadOptions): ImageUploadContr
       void upload(files);
     }
   };
+
+  document.addEventListener("paste", onDocumentPaste, true);
+
   const onDragOver = (event: DragEvent): void => {
     if (event.dataTransfer && imageFiles(event.dataTransfer.files).length > 0) event.preventDefault();
   };
@@ -140,19 +148,16 @@ export function attachImageUpload(options: ImageUploadOptions): ImageUploadContr
       void upload(files);
     }
   };
-  // Monaco installs its own capture listener on the host container before this
-  // controller is created. createMarkdownEditor supplies the host's parent so
-  // image paste is captured before the event reaches Monaco's listener.
-  node?.addEventListener("paste", onPaste, true);
-  node?.addEventListener("dragover", onDragOver);
-  node?.addEventListener("drop", onDrop);
+
+  editorRoot?.addEventListener("dragover", onDragOver);
+  editorRoot?.addEventListener("drop", onDrop);
 
   return {
     upload,
     dispose() {
-      node?.removeEventListener("paste", onPaste, true);
-      node?.removeEventListener("dragover", onDragOver);
-      node?.removeEventListener("drop", onDrop);
+      document.removeEventListener("paste", onDocumentPaste, true);
+      editorRoot?.removeEventListener("dragover", onDragOver);
+      editorRoot?.removeEventListener("drop", onDrop);
     }
   };
 }
