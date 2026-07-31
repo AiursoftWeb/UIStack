@@ -1,14 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <Version>10.0.23</Version>
+    <Version>10.0.24</Version>
     <TargetFramework>net10.0</TargetFramework>
     <AssemblyName>Aiursoft.UiStack</AssemblyName>
     <RootNamespace>Aiursoft.UiStack</RootNamespace>
     <IsTestProject>false</IsTestProject>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <IsPackable>true</IsPackable>
-    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Company>Aiurosft</Company>
@@ -21,19 +20,17 @@
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://gitlab.aiursoft.com/aiursoft/uistack.git</RepositoryUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
   </PropertyGroup>
-
-  <Target Name="BuildFrontend" BeforeTargets="BeforeBuild"
-          Condition="!Exists('Resources/dist/css/app.css')">
+  <Target Name="BuildFrontend" BeforeTargets="BeforeBuild" Condition="!Exists('Resources/dist/css/app.css')">
     <Exec Command="npm install" WorkingDirectory="../Aiursoft.UiStack.Frontend" />
     <Exec Command="npm run build" WorkingDirectory="../Aiursoft.UiStack.Frontend" />
     <ItemGroup>
       <_FrontendDistFiles Include="../Aiursoft.UiStack.Frontend/dist/**" />
     </ItemGroup>
-    <Copy SourceFiles="@(_FrontendDistFiles)" DestinationFolder="Resources/dist/%(RecursiveDir)" />
+    <Copy SourceFiles="@(_FrontendDistFiles)" DestinationFolder="Resources/dist/%(RecursiveDir)"></Copy>
   </Target>
-
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
     <None Include="../../README.md" Pack="true" PackagePath="." />
@@ -43,6 +40,6 @@
     <Folder Include="Views/Shared/" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Aiursoft.WebTools" Version="10.0.13" />
+    <PackageReference Include="Aiursoft.WebTools" Version="10.0.14" />
   </ItemGroup>
 </Project>
