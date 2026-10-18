@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <Version>10.0.26</Version>
+    <Version>10.0.27</Version>
     <TargetFramework>net10.0</TargetFramework>
     <AssemblyName>Aiursoft.UiStack</AssemblyName>
     <RootNamespace>Aiursoft.UiStack</RootNamespace>
@@ -16,9 +16,9 @@
     <PackageId>Aiursoft.UiStack</PackageId>
     <PackageTags>nuget package dotnet csproj dependencies</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://gitlab.aiursoft.com/aiursoft/uistack</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/AiursoftWeb/uistack</PackageProjectUrl>
     <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://gitlab.aiursoft.com/aiursoft/uistack.git</RepositoryUrl>
+    <RepositoryUrl>https://github.com/AiursoftWeb/uistack.git</RepositoryUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
