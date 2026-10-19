@@ -35,7 +35,7 @@ import "./modules/datatables"; // requires jQuery
 
 // Time
 import UtcTime from '@aiursoft/utctime.js'
-new UtcTime({
+const utcTime = new UtcTime({
   disableAutoUpdate: true,
   disableAgo: true,
   onSet: function (element, date) {
@@ -45,4 +45,23 @@ new UtcTime({
       title: date.toLocaleString(),
     })
   },
+})
+
+// Reuse the same formatter for content loaded after the initial page render.
+const timeSelector = '[data-utc-time]'
+new MutationObserver(records => {
+  const hasNewTimes = records.some(record =>
+    record.type === 'attributes' || Array.from(record.addedNodes).some(node =>
+      node.nodeType === Node.ELEMENT_NODE &&
+      (node.matches(timeSelector) || node.querySelector(timeSelector))
+    )
+  )
+  if (hasNewTimes) {
+    utcTime.initTime(utcTime.defaultSettings)
+  }
+}).observe(document.body, {
+  childList: true,
+  subtree: true,
+  attributes: true,
+  attributeFilter: ['data-utc-time'],
 })
