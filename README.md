@@ -1,6 +1,6 @@
 # Aiursoft UiStack
 
-[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://gitlab.aiursoft.com/aiursoft/uistack/-/blob/master/LICENSE)
+[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/AiursoftWeb/uistack/blob/master/LICENSE)
 [![Pipeline stat](https://gitlab.aiursoft.com/aiursoft/uistack/badges/master/pipeline.svg)](https://gitlab.aiursoft.com/aiursoft/uistack/-/pipelines)
 [![Test Coverage](https://gitlab.aiursoft.com/aiursoft/uistack/badges/master/coverage.svg)](https://gitlab.aiursoft.com/aiursoft/uistack/-/pipelines)
 [![Man hours](https://manhours.aiursoft.com/r/github.com/aiursoftweb/uistack.svg)](https://manhours.aiursoft.com/r/github.com/aiursoftweb/uistack.html)
@@ -22,13 +22,13 @@ The following script will install\update this app on your Ubuntu server. Support
 On your Ubuntu server, run the following command:
 
 ```bash
-curl -sL https://gitlab.aiursoft.com/aiursoft/uistack/-/raw/master/install.sh | sudo bash
+curl -sL https://raw.githubusercontent.com/AiursoftWeb/uistack/master/install.sh | sudo bash
 ```
 
 Of course it is suggested that append a custom port number to the command:
 
 ```bash
-curl -sL https://gitlab.aiursoft.com/aiursoft/uistack/-/raw/master/install.sh | sudo bash -s 8080
+curl -sL https://raw.githubusercontent.com/AiursoftWeb/uistack/master/install.sh | sudo bash -s 8080
 ```
 
 It will install the app as a systemd service, and start it automatically. Binary files will be located at `/opt/apps`. Service files will be located at `/etc/systemd/system`.
