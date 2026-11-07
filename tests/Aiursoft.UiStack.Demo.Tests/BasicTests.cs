@@ -43,7 +43,7 @@ public class BasicTests
         response.EnsureSuccessStatusCode(); // Status Code 200-299
     }
 
-    [DataTestMethod]
+    [TestMethod]
     [DataRow("css/app.css")]
     [DataRow("js/app.js")]
     public async Task TestGetEmbeddedAssets(string path)
