@@ -1,0 +1,7 @@
+{
+  "name": "uistack-resources",
+  "private": true,
+  "dependencies": {
+    "@aiursoft/uistack": "1.0.13"
+  }
+}

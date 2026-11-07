@@ -42,4 +42,14 @@ public class BasicTests
         var response = await _http.GetAsync(_endpointUrl);
         response.EnsureSuccessStatusCode(); // Status Code 200-299
     }
+
+    [TestMethod]
+    [DataRow("css/app.css")]
+    [DataRow("js/app.js")]
+    public async Task TestGetEmbeddedAssets(string path)
+    {
+        var response = await _http.GetAsync($"{_endpointUrl}/UIStack/dist/{path}");
+        response.EnsureSuccessStatusCode();
+        Assert.IsTrue((await response.Content.ReadAsByteArrayAsync()).Length > 0);
+    }
 }
