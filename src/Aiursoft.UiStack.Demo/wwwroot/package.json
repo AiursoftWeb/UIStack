@@ -6,5 +6,11 @@
   "license": "MIT",
   "dependencies": {
     "@aiursoft/uistack": "^1.0.12"
+  },
+  "keep": {
+    "@aiursoft/uistack": "dist"
+  },
+  "scripts": {
+    "build": "node build.mjs"
   }
 }
