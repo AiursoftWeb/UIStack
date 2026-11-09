@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <Version>10.0.35</Version>
+    <Version>10.0.36</Version>
     <TargetFramework>net10.0</TargetFramework>
     <AssemblyName>Aiursoft.UiStack</AssemblyName>
     <RootNamespace>Aiursoft.UiStack</RootNamespace>
@@ -25,13 +25,12 @@
   </PropertyGroup>
   <Target Name="PrepareFrontendResources" BeforeTargets="AssignTargetPaths" Condition="'$(DesignTimeBuild)' != 'true'">
     <Exec Command="npm ci --ignore-scripts --prefix wwwroot" />
-    <Error Condition="!Exists('wwwroot/node_modules/@aiursoft/uistack/dist/css/app.css')"
-           Text="The UIStack npm package is missing its compiled assets." />
+    <Error Condition="!Exists('wwwroot/node_modules/@aiursoft/uistack/dist/css/app.css')" Text="The UIStack npm package is missing its compiled assets."></Error>
     <ItemGroup>
       <_FrontendDistFiles Include="wwwroot/node_modules/@aiursoft/uistack/dist/**/*" />
     </ItemGroup>
-    <RemoveDir Directories="Resources/dist" />
-    <Copy SourceFiles="@(_FrontendDistFiles)" DestinationFolder="Resources/dist/%(RecursiveDir)" />
+    <RemoveDir Directories="Resources/dist"></RemoveDir>
+    <Copy SourceFiles="@(_FrontendDistFiles)" DestinationFolder="Resources/dist/%(RecursiveDir)"></Copy>
     <ItemGroup>
       <EmbeddedResource Include="Resources/dist/**/*" />
     </ItemGroup>
