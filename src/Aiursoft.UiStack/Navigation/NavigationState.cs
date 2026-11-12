@@ -57,7 +57,7 @@ public class NavigationState<T>
                 if (item == null)
                 {
                     item = new NavItemDefinition(
-                        navAttr.CascadedLinksGroupName.ToLower().Replace(" ", "-"),
+                        navAttr.CascadedLinksGroupName.ToLowerInvariant().Replace(" ", "-"),
                         navAttr.CascadedLinksGroupName,
                         navAttr.CascadedLinksIcon,
                         navAttr.CascadedLinksOrder,
