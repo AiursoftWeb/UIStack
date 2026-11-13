@@ -6,11 +6,11 @@
 <!DOCTYPE html>
 <html lang="@Model.Language"
       dir="@Model.Direction"
-      data-bs-theme="@Model.Theme.ToString().ToLower()"
-      data-layout="@Model.Layout.ToString().ToLower()"
-      data-sidebar-theme="@Model.SidebarTheme.ToString().ToLower()"
-      data-sidebar-position="@Model.SidebarPosition.ToString().ToLower()"
-      data-sidebar-behavior="@Model.SidebarBehavior.ToString().ToLower()">
+      data-bs-theme="@Model.Theme.ToString().ToLowerInvariant()"
+      data-layout="@Model.Layout.ToString().ToLowerInvariant()"
+      data-sidebar-theme="@Model.SidebarTheme.ToString().ToLowerInvariant()"
+      data-sidebar-position="@Model.SidebarPosition.ToString().ToLowerInvariant()"
+      data-sidebar-behavior="@Model.SidebarBehavior.ToString().ToLowerInvariant()">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
