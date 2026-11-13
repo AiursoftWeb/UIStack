@@ -5,7 +5,7 @@
   "author": "Anduin Xue",
   "license": "MIT",
   "dependencies": {
-    "@aiursoft/uistack": "^2.0.12"
+    "@aiursoft/uistack": "^2.0.13"
   },
   "keep": {
     "@aiursoft/uistack": "dist"
