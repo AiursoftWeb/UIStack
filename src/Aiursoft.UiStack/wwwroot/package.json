@@ -2,6 +2,6 @@
   "name": "uistack-resources",
   "private": true,
   "dependencies": {
-    "@aiursoft/uistack": "2.0.16"
+    "@aiursoft/uistack": "2.0.17"
   }
 }
