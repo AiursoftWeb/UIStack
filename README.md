@@ -12,7 +12,7 @@ Aiursoft UiStack is a front-end framework for Aiursoft projects based on ASP.NET
 
 ![overview](./screenshot.png)
 
-Frontend sources are maintained in [UIStack.js](https://gitlab.aiursoft.com/aiursoft/UIStack.js) and [MarkdownUI.js](https://gitlab.aiursoft.com/aiursoft/MarkdownUI.js). This repository consumes the published UIStack assets.
+Frontend sources are maintained in [UIStack.js](https://github.com/AiursoftWeb/UIStack.js) and [MarkdownUI.js](https://github.com/AiursoftWeb/MarkdownUI.js). This repository consumes the published UIStack assets.
 
 ## Try
 
