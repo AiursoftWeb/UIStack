@@ -14,6 +14,12 @@ Aiursoft UiStack is a front-end framework for Aiursoft projects based on ASP.NET
 
 Frontend sources are maintained in [UIStack.js](https://github.com/AiursoftWeb/UIStack.js) and [MarkdownUI.js](https://github.com/AiursoftWeb/MarkdownUI.js). This repository consumes the published UIStack assets.
 
+## Overview
+
+### What is UiStack?
+
+Aiursoft UiStack is a front-end framework for Aiursoft projects based on ASP.NET Core. It provides a set of common components and styles for Aiursoft projects. It is designed to be simple and easy to use, and can be used to quickly build a front-end for Aiursoft projects.
+
 ## Try
 
 Try a running demo [here](https://stack.aiursoft.com).
@@ -67,6 +73,29 @@ The docker image has the following context:
 | Data path   | /data                           |
 | Config path | /data/appsettings.json          |
 
+## Usage
+
+Open the application at the URL selected in the installation or run steps above.
+
+## Configuration
+
+The application defaults are defined in [`src/Aiursoft.UiStack.Demo/appsettings.json`](src/Aiursoft.UiStack.Demo/appsettings.json). The Docker image initializes `/data/appsettings.json` on its first start and keeps it for later starts; persist `/data`. Override nested values with double-underscore environment variables, such as `Logging__LogLevel__Default`.
+
+```jsonc
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  }
+}
+```
+
+### Shared settings
+
+- `Logging:LogLevel` controls application and framework verbosity.
+
 ## How to contribute
 
 There are many ways to contribute to the project: logging bugs, submitting pull requests, reporting issues, and creating suggestions.
@@ -74,3 +103,7 @@ There are many ways to contribute to the project: logging bugs, submitting pull 
 Even if you with push rights on the repository, you should create a personal fork and create feature branches there when you need them. This keeps the main repository clean and your workflow cruft out of sight.
 
 We're also interested in your feedback on the future of this project. You can submit a suggestion or feature request through the issue tracker. To make this process more effective, we're asking that these include more information to help define them more clearly.
+
+## License
+
+Licensed under the [MIT License](LICENSE).
