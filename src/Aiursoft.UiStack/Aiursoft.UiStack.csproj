@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <Version>11.0.0-rc.1</Version>
+    <Version>11.0.0</Version>
     <TargetFramework>net10.0</TargetFramework>
     <AssemblyName>Aiursoft.UiStack</AssemblyName>
     <RootNamespace>Aiursoft.UiStack</RootNamespace>
