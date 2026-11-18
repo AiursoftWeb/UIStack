@@ -39,9 +39,8 @@ Installation starts after three seconds; press Ctrl+C to cancel. Then open `http
 Requirements about how to run
 
 1. Install [.NET 10 SDK](http://dot.net/) and [Node.js](https://nodejs.org/).
-2. Execute `npm install` at `wwwroot` folder to install the dependencies.
-3. Execute `dotnet run` to run the app.
-4. Use your browser to view [http://localhost:5000](http://localhost:5000).
+2. Execute `dotnet run --project src/Aiursoft.UiStack.Demo` to build and run the demo, including the npm assets.
+3. Use your browser to view [http://localhost:5000](http://localhost:5000).
 
 ## Run in Microsoft Visual Studio
 
@@ -76,6 +75,8 @@ The docker image has the following context:
 ## Usage
 
 Open the application at the URL selected in the installation or run steps above.
+
+Applications using UiStack 11 install `@aiursoft/uistack` in their web project and publish its `dist` folder at `/node_modules/@aiursoft/uistack/dist/`. Serve it with the standard ASP.NET Core `UseStaticFiles()` middleware. Remove any `UseUIStack()` call and update direct references to `/UIStack/dist/` in custom views and scripts. The demo project shows how to prepare the assets during a .NET build.
 
 ## Configuration
 

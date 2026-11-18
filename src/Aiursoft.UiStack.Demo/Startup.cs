@@ -30,7 +30,6 @@ public class Startup : IWebStartup
 
     public void Configure(WebApplication app)
     {
-        app.UseUIStack();
         app.UseStaticFiles();
         app.UseRouting();
         app.MapDefaultControllerRoute();

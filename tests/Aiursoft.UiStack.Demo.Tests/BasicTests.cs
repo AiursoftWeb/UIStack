@@ -40,15 +40,20 @@ public class BasicTests
     public async Task TestGetHome()
     {
         var response = await _http.GetAsync(_endpointUrl);
-        response.EnsureSuccessStatusCode(); // Status Code 200-299
+        response.EnsureSuccessStatusCode();
+        var html = await response.Content.ReadAsStringAsync();
+        StringAssert.Contains(html, "/node_modules/@aiursoft/uistack/dist/css/app.css");
+        StringAssert.Contains(html, "/node_modules/@aiursoft/uistack/dist/js/app.js");
     }
 
     [TestMethod]
     [DataRow("css/app.css")]
     [DataRow("js/app.js")]
-    public async Task TestGetEmbeddedAssets(string path)
+    [DataRow("fonts/poppins-latin-400-normal.woff2")]
+    [DataRow("img/flags/cn.png")]
+    public async Task TestGetApplicationAssets(string path)
     {
-        var response = await _http.GetAsync($"{_endpointUrl}/UIStack/dist/{path}");
+        var response = await _http.GetAsync($"{_endpointUrl}/node_modules/@aiursoft/uistack/dist/{path}");
         response.EnsureSuccessStatusCode();
         Assert.IsTrue((await response.Content.ReadAsByteArrayAsync()).Length > 0);
     }
