@@ -25,6 +25,12 @@ public class LanguagesDropdownProvider
                 FlagUrl = "/node_modules/@aiursoft/uistack/dist/img/flags/cn.png",
                 Link = "#",
                 Name = "中文 - 简体"
+            },
+            new LanguageSelection
+            {
+                FlagUrl = "/node_modules/@aiursoft/uistack/dist/img/flags/hr.png",
+                Link = "#",
+                Name = "Hrvatski"
             }
         ]
     };
