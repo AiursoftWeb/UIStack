@@ -14,7 +14,7 @@ Aiursoft UiStack is a front-end framework for Aiursoft projects based on ASP.NET
 
 Frontend sources are maintained in [UIStack.js](https://github.com/AiursoftWeb/UIStack.js) and [MarkdownUI.js](https://github.com/AiursoftWeb/MarkdownUI.js). This repository consumes the published UIStack assets.
 
-**UiStack 11 requires both packages.** Add the `Aiursoft.UiStack` NuGet package for the .NET components and shared Razor layout, and install `@aiursoft/uistack` from npm for the CSS, JavaScript, fonts, and images. The NuGet package no longer ships those assets. See [Usage](#usage) for the application setup.
+**UiStack 10.1 requires both packages.** Add the `Aiursoft.UiStack` NuGet package for the .NET components and shared Razor layout, and install `@aiursoft/uistack` from npm for the CSS, JavaScript, fonts, and images. The NuGet package no longer ships those assets. See [Usage](#usage) for the application setup.
 
 ## Overview
 
@@ -78,9 +78,9 @@ The docker image has the following context:
 
 Open the application at the URL selected in the installation or run steps above.
 
-To use UiStack 11 in an existing ASP.NET Core app:
+To use UiStack 10.1 in an existing ASP.NET Core app:
 
-1. Reference the `Aiursoft.UiStack` 11.x NuGet package in the web project.
+1. Reference the `Aiursoft.UiStack` 10.1.x NuGet package in the web project.
 2. From the directory containing the app’s `package.json`, install the browser package used by the demo:
 
    ```bash
@@ -88,7 +88,7 @@ To use UiStack 11 in an existing ASP.NET Core app:
    ```
 
 3. Include the package’s `dist` folder in the published application under `wwwroot/node_modules/@aiursoft/uistack/dist/`. Enable ASP.NET Core’s standard `app.UseStaticFiles()` middleware. The shared layout loads its CSS and JavaScript from `/node_modules/@aiursoft/uistack/dist/`.
-4. If upgrading from UiStack 10, remove the `app.UseUIStack()` call and update any direct references to `/UIStack/dist/` in custom views and scripts.
+4. If upgrading from UiStack 10.0, remove the `app.UseUIStack()` call and update any direct references to `/UIStack/dist/` in custom views and scripts.
 
 See the [demo project](src/Aiursoft.UiStack.Demo/Aiursoft.UiStack.Demo.csproj) for an example that prepares and publishes the npm assets during a .NET build. Node.js and npm are needed to build the assets into the application. The published application serves the prepared files without Node.js.
 
